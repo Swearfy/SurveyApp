@@ -90,7 +90,7 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
         val cursor: Cursor = db.rawQuery(sqlStatement,null)
 
-        if ((cursor.moveToFirst()))
+        if (cursor.moveToFirst())
             do {
                 val userId = cursor.getInt(0)
                 val userName = cursor.getString(1)
