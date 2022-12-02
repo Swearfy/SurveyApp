@@ -90,7 +90,7 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
         val cursor: Cursor = db.rawQuery(sqlStatement,null)
 
-        if (cursor.moveToFirst())
+        if (cursor.moveToFirst()){
             do {
                 val userId = cursor.getInt(0)
                 val userName = cursor.getString(1)
@@ -98,11 +98,80 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
                 val x = User(userId,userName,passWord)
                 userList.add(x)
             }while (cursor.moveToNext())
-
-            cursor.close()
+        }
+        cursor.close()
         db.close()
 
         return userList
+    }
+
+    fun getAllSurveys(): ArrayList<Survey>{
+        val surveyList = ArrayList<Survey>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $surveys"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+
+        if (cursor.moveToFirst()){
+            do {
+                val surveyId = cursor.getInt(0)
+                val surveyTitle = cursor.getString(1)
+                val surveyStartDate = cursor.getInt(2)
+                val surveyEndDate = cursor.getInt(3)
+                val x = Survey(surveyId,surveyTitle,surveyStartDate,surveyEndDate)
+                surveyList.add(x)
+            }while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+
+        return surveyList
+    }
+
+
+    fun getAllQuestions(): ArrayList<Question>{
+        val questionList = ArrayList<Question>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $questions"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+
+        if (cursor.moveToFirst()){
+            do {
+                val questionId = cursor.getInt(0)
+                val questionText = cursor.getString(1)
+                val surveyId = cursor.getInt(2)
+                val x = Question(questionId,questionText,surveyId)
+                questionList.add(x)
+            }while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+
+        return questionList
+    }
+
+    fun getAllAnswers(): ArrayList<Answer>{
+        val answersList = ArrayList<Answer>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $answers"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+
+        if (cursor.moveToFirst()){
+            do {
+                val answerId = cursor.getInt(0)
+                val questionId = cursor.getInt(1)
+                val userId = cursor.getInt(2)
+                val answerText = cursor.getString(3)
+                val x = Answer(answerId,questionId,userId,answerText)
+                answersList.add(x)
+            }while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+
+        return answersList
     }
 
 }
