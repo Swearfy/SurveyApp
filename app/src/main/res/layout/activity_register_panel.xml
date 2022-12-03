@@ -85,6 +85,7 @@
         android:layout_width="185dp"
         android:layout_height="65dp"
         android:layout_marginBottom="100dp"
+        android:onClick="register"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
