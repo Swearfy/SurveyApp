@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.sql.SQLException
 
-private val DataBaseName = "DataBaseSurvey"
+private val DataBaseName = "dataBaseSurvey.db"
 private val ver: Int = 1
 
 class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,null, ver) {
@@ -41,7 +41,7 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
     override fun onCreate(db: SQLiteDatabase?) {
         try {
-            var sqlCreateStatement: String = "CREATE TABLE " + users + " ( " +
+            var sqlCreateStatement: String = "CREATE TABLE IF NOT EXISTS " + users + " ( " +
                     userId + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     userName + " TEXT NOT NULL, " +
                     passWord + " TEXT NOT NULL, " +
@@ -49,17 +49,17 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
             db?.execSQL(sqlCreateStatement)
 
-            sqlCreateStatement = "CREATE TABLE " +
+            sqlCreateStatement = "CREATE TABLE IF NOT EXISTS " +
                     surveys + " ( " +
                     surveyId + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     surveyTitle + " TEXT NOT NULL, " +
                     surveyStartDate + " TEXT NOT NULL, " +
-                    surveyEndDate + " TEXT, )"
+                    surveyEndDate + " TEXT )"
 
             db?.execSQL(sqlCreateStatement)
 
 
-            sqlCreateStatement = "CREATE TABLE " +
+            sqlCreateStatement = "CREATE TABLE IF NOT EXISTS " +
                     questions + " ( " +
                     questionId + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     questionText + " TEXT, " +
@@ -67,12 +67,12 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
             db?.execSQL(sqlCreateStatement)
 
-            sqlCreateStatement = "CREATE TABLE " +
+            sqlCreateStatement = "CREATE TABLE IF NOT EXISTS " +
                     answers + " ( " +
                     answerId + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     answerQuestionId + " INTEGER NOT NULL, " +
                     answerUserId + " INTEGER NOT NULL, " +
-                    answerText + " TEXT, " + " FOREIGN KEY ($answerUserId) REFERENCES $answers ($answerId)" + " FOREIGN KEY ($answerQuestionId ) REFERENCES $questions($questionId))"
+                    answerText + " TEXT, " + " FOREIGN KEY ($answerUserId) REFERENCES $answers ($answerId)," + " FOREIGN KEY ($answerQuestionId ) REFERENCES $questions($questionId))"
 
             db?.execSQL(sqlCreateStatement)
 
@@ -109,9 +109,25 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         return userList
     }
 
-    fun getUser(uId: Int): User{
+    fun getUserByID(uId: Int): User{
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $users WHERE $userId = $uId"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+
+        if (cursor.moveToFirst()){
+            db.close()
+            return  User(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3))
+        }
+        else{
+            db.close()
+            return User(0,"User not found","Error",0)
+        }
+    }
+
+    fun getUser(uName: String): User{
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $users WHERE $userName = '$uName'"
 
         val cursor: Cursor = db.rawQuery(sqlStatement,null)
 
