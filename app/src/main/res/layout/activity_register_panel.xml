@@ -31,12 +31,12 @@
 
     <EditText
         android:id="@+id/text_UserNameRegister"
+        android:hint="Enter Username"
         android:layout_width="235dp"
         android:layout_height="58dp"
         android:layout_marginTop="244dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
 
     <EditText
         android:id="@+id/text_Password1"
+        android:hint="Enter Password"
         android:layout_width="238dp"
         android:layout_height="57dp"
         android:layout_marginTop="316dp"
@@ -56,6 +57,7 @@
 
     <EditText
         android:id="@+id/text_Password2"
+        android:hint="Re-Enter Password"
         android:layout_width="235dp"
         android:layout_height="61dp"
         android:layout_marginBottom="284dp"
@@ -67,6 +69,7 @@
 
     <EditText
         android:id="@+id/accesCode"
+        android:hint="Admin Code"
         android:layout_width="235dp"
         android:layout_height="59dp"
         android:layout_marginBottom="204dp"
