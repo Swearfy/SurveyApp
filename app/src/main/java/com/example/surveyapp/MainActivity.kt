@@ -20,13 +20,12 @@ class MainActivity : AppCompatActivity() {
     fun login(view :View){
 
         val intent = Intent(this,AdminPanel::class.java)
+        val intent2 = Intent(this,UserPanel::class.java)
+
         var userName = findViewById<EditText>(R.id.text_username).text.toString()
         var passWord = findViewById<EditText>(R.id.text_Password).text.toString()
 
         val actualUsername = dbHelper.getUser(userName)
-
-
-
 
         if (userName.isBlank() && passWord.isBlank()){
             Toast.makeText(this,"Please Fill in the boxes above", Toast.LENGTH_LONG).show()
@@ -36,6 +35,13 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Please Fill in password", Toast.LENGTH_LONG).show()
         }else if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1){
             startActivity(intent)
+        }else if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0){
+            startActivity(intent2)
+        }else if(userName == actualUsername.userName && passWord != actualUsername.passWord){
+            Toast.makeText(this,"password is wrong", Toast.LENGTH_LONG).show()
+        }
+        else{
+            Toast.makeText(this,"User does not exist ", Toast.LENGTH_LONG).show()
         }
     }
 
