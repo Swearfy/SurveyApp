@@ -31,7 +31,7 @@ class UserPanel : AppCompatActivity() {
             val surveyTitle = surveyList[positon]
 
             val intent = Intent(this,SurveyEditPanelandDataUser::class.java)
-            intent.putExtra("title",surveyTitle.surveyId)
+            intent.putExtra("surveyid",surveyTitle.surveyId)
             intent.putExtra("userId",userId)
 
             startActivity(intent)
