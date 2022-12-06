@@ -251,10 +251,10 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
     }
 
-    fun deleteSurvey(survey: Survey): Boolean{
+    fun deleteSurvey(survey: Int): Boolean{
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(surveys,"$surveyId = ${survey.surveyId}",null) == 1
+        val result = db.delete(surveys,"$surveyId = $survey",null) == 1
 
         db.close()
         return result
@@ -330,10 +330,10 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
     }
 
-    fun deleteQuestion(question: Question): Boolean{
+    fun deleteQuestion(question: Int): Boolean{
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(questions,"$questionId = ${question.questionId}",null) == 1
+        val result = db.delete(questions,"$questionId = $question",null) == 1
 
         db.close()
         return result

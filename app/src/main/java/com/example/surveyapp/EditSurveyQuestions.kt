@@ -80,7 +80,7 @@ class EditSurveyQuestions : AppCompatActivity() {
 
 
                 if (dbHelper.updateSurvey(survey)) {
-                    Toast.makeText(this, "Survey created", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Survey updated", Toast.LENGTH_SHORT).show()
 
 
                     val question1 = Question(newArray[0].questionId,question1,transferId2)
@@ -108,7 +108,7 @@ class EditSurveyQuestions : AppCompatActivity() {
                     startActivity(intent)
 
                 } else {
-                    Toast.makeText(this, "Error: The user not added", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
 
         }

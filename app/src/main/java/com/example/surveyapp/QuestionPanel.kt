@@ -13,7 +13,6 @@ import com.example.surveyapp.Model.Survey
 class QuestionPanel : AppCompatActivity() {
 
     val dbHelper = DataBaseHelper(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_panel)

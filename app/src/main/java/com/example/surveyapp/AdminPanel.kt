@@ -18,6 +18,8 @@ class AdminPanel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_panel)
 
+        val userId = intent.getIntExtra("userId",0)
+
         val surveyList = dbHelper.getAllSurveys()
         simpleList = findViewById<ListView>(R.id.listviewItem)
 

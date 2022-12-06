@@ -4,22 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SurveyEditPanelandData">
-
-    <TextView
-        android:id="@+id/text_editStartDate"
-        android:layout_width="126dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Start Date"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_editTitle" />
+    tools:context=".SurveyEditPanelandDataUser">
 
     <Button
-        android:id="@+id/btn_editBack"
+        android:id="@+id/btn_editBack2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -30,18 +18,30 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_edit"
+        android:id="@+id/btn_edit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="88dp"
-        android:onClick="edit"
-        android:text="Edit"
+        android:onClick="answer"
+        android:text="Answer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/text_editEndDate"
+        android:id="@+id/text_editStartDate2"
+        android:layout_width="126dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Start Date"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_editTitle2" />
+
+    <TextView
+        android:id="@+id/text_editEndDate2"
         android:layout_width="125dp"
         android:layout_height="61dp"
         android:layout_marginTop="20dp"
@@ -50,10 +50,10 @@
         android:hint="End Date"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_editTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/text_editTitle2" />
 
     <TextView
-        android:id="@+id/text_editTitle"
+        android:id="@+id/text_editTitle2"
         android:layout_width="311dp"
         android:layout_height="53dp"
         android:layout_marginStart="50dp"
@@ -63,17 +63,4 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_deletesurvey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="88dp"
-        android:onClick="delete"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_edit"
-        app:layout_constraintStart_toEndOf="@+id/btn_editBack" />
 </androidx.constraintlayout.widget.ConstraintLayout>

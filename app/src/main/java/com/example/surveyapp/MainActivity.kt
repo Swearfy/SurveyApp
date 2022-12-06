@@ -39,21 +39,22 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Please Fill in password", Toast.LENGTH_LONG).show()
             return
         }
-        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1){
-            startActivity(intent)
-            return
-        }
-        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0){
-            startActivity(intent2)
-            return
-        }
+
         if(userName == actualUsername.userName && passWord != actualUsername.passWord){
             Toast.makeText(this,"password is wrong", Toast.LENGTH_LONG).show()
             return
         }
-        else
-
-        {
+        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0){
+            intent2.putExtra("userId",actualUsername.userId)
+            startActivity(intent2)
+            return
+        }
+        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1){
+            intent.putExtra("userId",actualUsername.userId)
+            startActivity(intent)
+            return
+        }
+        else{
             Toast.makeText(this,"User does not exist ", Toast.LENGTH_LONG).show()
         }
     }
