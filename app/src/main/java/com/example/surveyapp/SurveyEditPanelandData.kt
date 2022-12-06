@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.surveyapp.Model.Answer
 import com.example.surveyapp.Model.DataBaseHelper
 import com.example.surveyapp.Model.Question
 
@@ -13,6 +14,8 @@ class SurveyEditPanelandData : AppCompatActivity() {
 
     val dbHelper: DataBaseHelper = DataBaseHelper(this)
     val newArray = ArrayList<Question>()
+    var answerList = ArrayList<Answer>()
+    var questionIdList = ArrayList<Int>()
     var chosensurveyId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,15 @@ class SurveyEditPanelandData : AppCompatActivity() {
         for (question in questions){
             newArray.add(question)
         }
+
+        for (question in newArray){
+            questionIdList.add(question.questionId)
+        }
+
+        for (id in questionIdList){
+            answerList.add(dbHelper.getAnswerbyQuestionId(id))
+        }
+
 
         findViewById<TextView>(R.id.text_editTitle).text = survey.surveyTitle
         findViewById<TextView>(R.id.text_editStartDate).text = survey.surveyStartDate
@@ -47,6 +59,10 @@ class SurveyEditPanelandData : AppCompatActivity() {
 
             for (i in 0 until 10){
                 dbHelper.deleteQuestion(newArray[i].questionId)
+            }
+
+            for (i in 0 until answerList.size){
+                dbHelper.deleteAnswer(answerList[i].questionId)
             }
 
             Toast.makeText(this, "Survey deleted", Toast.LENGTH_SHORT).show()

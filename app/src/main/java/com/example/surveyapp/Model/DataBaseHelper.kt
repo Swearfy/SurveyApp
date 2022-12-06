@@ -393,6 +393,22 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         }
     }
 
+    fun getAnswerbyQuestionId(uId: Int): Answer{
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $answers WHERE $answerQuestionId = $uId"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+
+        if (cursor.moveToFirst()){
+            db.close()
+            return  Answer(cursor.getInt(0),cursor.getInt(1),cursor.getInt(2),cursor.getString(3))
+        }
+        else{
+            db.close()
+            return Answer(0,0,0,"error")
+        }
+    }
+
     fun addAnswer(answer: Answer): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
@@ -408,14 +424,15 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
     }
 
-    fun deleteAnswer(answer: Answer): Boolean{
+    fun deleteAnswer(answer: Int): Boolean{
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(answers,"$answerId = ${answer.answerId}",null) == 1
+        val result = db.delete(answers,"$answerId = $answer",null) == 1
 
         db.close()
         return result
     }
+
 
     fun updateAnswer(answer: Answer): Boolean{
 
