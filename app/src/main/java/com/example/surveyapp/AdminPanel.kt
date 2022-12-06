@@ -32,7 +32,7 @@ class AdminPanel : AppCompatActivity() {
             val surveyTitle = surveyList[positon]
 
             val intent = Intent(this,SurveyEditPanelandData::class.java)
-            intent.putExtra("title",surveyTitle.surveyId)
+            intent.putExtra("surveyId",surveyTitle.surveyId)
 
             startActivity(intent)
         }

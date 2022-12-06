@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 
 class MainActivity : AppCompatActivity() {
+
     val dbHelper: DataBaseHelper = DataBaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
     }
 
     fun login(view :View){
@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,AdminPanel::class.java)
         val intent2 = Intent(this,UserPanel::class.java)
 
-        var userName = findViewById<EditText>(R.id.text_username).text.toString()
-        var passWord = findViewById<EditText>(R.id.text_Password).text.toString()
+        val userName = findViewById<EditText>(R.id.text_username).text.toString()
+        val passWord = findViewById<EditText>(R.id.text_Password).text.toString()
 
         val actualUsername = dbHelper.getUser(userName)
 

@@ -3,7 +3,6 @@ package com.example.surveyapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -15,12 +14,13 @@ class EditSurveyQuestions : AppCompatActivity() {
     val dbHelper = DataBaseHelper(this)
     var transferId2 = 0
     val newArray = ArrayList<Question>()
+    val questionUpdateList = ArrayList<Question>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_survey_questions)
-        val transferId = intent.getIntExtra("id",0)
+        val transferId = intent.getIntExtra("surveyId",0)
 
         transferId2 = transferId
         val questions = dbHelper.getAllQuestionsBySurveyId(transferId2)
@@ -75,42 +75,31 @@ class EditSurveyQuestions : AppCompatActivity() {
             Toast.makeText(this,"Please fill in all the questions", Toast.LENGTH_SHORT).show()
             return
         }else{
-
             val survey = Survey(transferId2,title, startDate,endDate)
+            if (dbHelper.updateSurvey(survey)) {
+                Toast.makeText(this, "Survey updated", Toast.LENGTH_SHORT).show()
 
+                questionUpdateList.add(Question(newArray[0].questionId,question1,transferId2))
+                questionUpdateList.add(Question(newArray[1].questionId,question2,transferId2))
+                questionUpdateList.add(Question(newArray[2].questionId,question3,transferId2))
+                questionUpdateList.add(Question(newArray[3].questionId,question4,transferId2))
+                questionUpdateList.add(Question(newArray[4].questionId,question5,transferId2))
+                questionUpdateList.add(Question(newArray[5].questionId,question6,transferId2))
+                questionUpdateList.add(Question(newArray[6].questionId,question7,transferId2))
+                questionUpdateList.add(Question(newArray[7].questionId,question8,transferId2))
+                questionUpdateList.add(Question(newArray[8].questionId,question9,transferId2))
+                questionUpdateList.add(Question(newArray[9].questionId,question10,transferId2))
 
-                if (dbHelper.updateSurvey(survey)) {
-                    Toast.makeText(this, "Survey updated", Toast.LENGTH_SHORT).show()
-
-
-                    val question1 = Question(newArray[0].questionId,question1,transferId2)
-                    val question2 = Question(newArray[1].questionId,question2,transferId2)
-                    val question3 = Question(newArray[2].questionId,question3,transferId2)
-                    val question4 = Question(newArray[3].questionId,question4,transferId2)
-                    val question5 = Question(newArray[4].questionId,question5,transferId2)
-                    val question6 = Question(newArray[5].questionId,question6,transferId2)
-                    val question7 = Question(newArray[6].questionId,question7,transferId2)
-                    val question8 = Question(newArray[7].questionId,question8,transferId2)
-                    val question9 = Question(newArray[8].questionId,question9,transferId2)
-                    val question10 = Question(newArray[9].questionId,question10,transferId2)
-
-                    dbHelper.updateQuetion(question1)
-                    dbHelper.updateQuetion(question2)
-                    dbHelper.updateQuetion(question3)
-                    dbHelper.updateQuetion(question4)
-                    dbHelper.updateQuetion(question5)
-                    dbHelper.updateQuetion(question6)
-                    dbHelper.updateQuetion(question7)
-                    dbHelper.updateQuetion(question8)
-                    dbHelper.updateQuetion(question9)
-                    dbHelper.updateQuetion(question10)
-                    val intent = Intent(this,AdminPanel::class.java)
-                    startActivity(intent)
-
-                } else {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                for (i in 0 until 10){
+                    dbHelper.updateQuetion(questionUpdateList[i])
                 }
 
+                val intent = Intent(this,AdminPanel::class.java)
+                startActivity(intent)
+
+            } else {
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

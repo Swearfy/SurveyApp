@@ -17,7 +17,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_survey_title_panel)
 
-        val id = intent.getIntExtra("id",0)
+        val id = intent.getIntExtra("surveyId",0)
 
         val chosenIdsurvey = dbHelper.getSurveyById(id)
 
@@ -28,34 +28,26 @@ class EditSurveyTitlePanel : AppCompatActivity() {
     }
 
     fun next2(view: View){
+        val intent = Intent(this, EditSurveyQuestions::class.java)
 
         val title = findViewById<EditText>(R.id.text_title2).text.toString()
         val startDate = findViewById<EditText>(R.id.text_startDate2).text.toString()
         val endDate = findViewById<EditText>(R.id.text_endDate2).text.toString()
 
-
         if (title.isBlank()){
             Toast.makeText(this,"Please enter a title", Toast.LENGTH_SHORT).show()
             return
         }
-
         if (startDate.isBlank()){
             Toast.makeText(this,"Please enter a starting date", Toast.LENGTH_SHORT).show()
             return
-        } else
-        {
-            val surveyFinder = dbHelper.getSurvey(title)
-            val checkTitle = surveyFinder.surveyTitle
-            val intent = Intent(this, EditSurveyQuestions::class.java)
-
-            intent.putExtra("id",transferId)
+        }
+            intent.putExtra("surveyId",transferId)
             intent.putExtra("title",title)
             intent.putExtra("startDate",startDate)
             intent.putExtra("endDate",endDate)
 
             startActivity(intent)
-
-        }
     }
 
     fun goBack2(view: View){

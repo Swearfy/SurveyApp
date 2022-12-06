@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import com.example.surveyapp.Model.DataBaseHelper
-import com.example.surveyapp.Model.Question
 
 class SurveyEditPanelandDataUser : AppCompatActivity() {
     val dbHelper: DataBaseHelper = DataBaseHelper(this)
@@ -19,22 +17,14 @@ class SurveyEditPanelandDataUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_edit_paneland_data_user)
 
-        val chosensurveyId = intent.getIntExtra("title",0)
-        val userId = intent.getIntExtra("userId",0)
+        surveyid = intent.getIntExtra("title",0)
+        transferUserId = intent.getIntExtra("userId",0)
 
-        surveyid = chosensurveyId
-        transferUserId = userId
+        val survey = dbHelper.getSurveyById(surveyid)
 
-        val survey = dbHelper.getSurveyById(chosensurveyId)
-
-        val title = findViewById<TextView>(R.id.text_editTitle2)
-        val startDate = findViewById<TextView>(R.id.text_editStartDate2)
-        val endDate = findViewById<TextView>(R.id.text_editEndDate2)
-
-
-        title.text = survey.surveyTitle
-        startDate.text = survey.surveyStartDate
-        endDate.text = survey.surveyEndDate
+        findViewById<TextView>(R.id.text_editTitle2).text = survey.surveyTitle
+        findViewById<TextView>(R.id.text_editStartDate2).text = survey.surveyStartDate
+        findViewById<TextView>(R.id.text_editEndDate2).text = survey.surveyEndDate
     }
 
     fun answer(view: View){

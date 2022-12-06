@@ -13,6 +13,8 @@ import com.example.surveyapp.Model.Survey
 class QuestionPanel : AppCompatActivity() {
 
     val dbHelper = DataBaseHelper(this)
+    val questionList = ArrayList<Question>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_panel)
@@ -61,27 +63,21 @@ class QuestionPanel : AppCompatActivity() {
                 val surveyFinder = dbHelper.getSurvey(survey.surveyTitle)
                 val surveyId = surveyFinder.surveyId
 
-                val question1 = Question(0,question1,surveyId)
-                val question2 = Question(0,question2,surveyId)
-                val question3 = Question(0,question3,surveyId)
-                val question4 = Question(0,question4,surveyId)
-                val question5 = Question(0,question5,surveyId)
-                val question6 = Question(0,question6,surveyId)
-                val question7 = Question(0,question7,surveyId)
-                val question8 = Question(0,question8,surveyId)
-                val question9 = Question(0,question9,surveyId)
-                val question10 = Question(0,question10,surveyId)
+                questionList.add(Question(0,question1,surveyId))
+                questionList.add(Question(0,question2,surveyId))
+                questionList.add(Question(0,question3,surveyId))
+                questionList.add(Question(0,question4,surveyId))
+                questionList.add(Question(0,question5,surveyId))
+                questionList.add(Question(0,question6,surveyId))
+                questionList.add(Question(0,question7,surveyId))
+                questionList.add(Question(0,question8,surveyId))
+                questionList.add(Question(0,question9,surveyId))
+                questionList.add(Question(0,question10,surveyId))
 
-                dbHelper.addQuestion(question1)
-                dbHelper.addQuestion(question2)
-                dbHelper.addQuestion(question3)
-                dbHelper.addQuestion(question4)
-                dbHelper.addQuestion(question5)
-                dbHelper.addQuestion(question6)
-                dbHelper.addQuestion(question7)
-                dbHelper.addQuestion(question8)
-                dbHelper.addQuestion(question9)
-                dbHelper.addQuestion(question10)
+                for (i in 0 until 10){
+                    dbHelper.addQuestion(questionList[i])
+                }
+
                 val intent = Intent(this,AdminPanel::class.java)
                 startActivity(intent)
             } else {
