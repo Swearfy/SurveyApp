@@ -1,15 +1,16 @@
 package com.example.surveyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class UserPanel : AppCompatActivity() {
+class ListView : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_panel)
+        setContentView(R.layout.activity_list_view)
+
     }
 
-    override fun onBackPressed() {
-        return
-    }
+
 }

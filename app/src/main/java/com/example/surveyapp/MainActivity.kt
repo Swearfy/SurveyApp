@@ -1,11 +1,11 @@
 package com.example.surveyapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 
 class MainActivity : AppCompatActivity() {
@@ -29,18 +29,31 @@ class MainActivity : AppCompatActivity() {
 
         if (userName.isBlank() && passWord.isBlank()){
             Toast.makeText(this,"Please Fill in the boxes above", Toast.LENGTH_LONG).show()
-        }else if (userName.isBlank() ){
-            Toast.makeText(this,"Please Fill in username", Toast.LENGTH_LONG).show()
-        }else if (passWord.isBlank() ){
-            Toast.makeText(this,"Please Fill in password", Toast.LENGTH_LONG).show()
-        }else if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1){
-            startActivity(intent)
-        }else if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0){
-            startActivity(intent2)
-        }else if(userName == actualUsername.userName && passWord != actualUsername.passWord){
-            Toast.makeText(this,"password is wrong", Toast.LENGTH_LONG).show()
+            return
         }
-        else{
+        if (userName.isBlank() ){
+            Toast.makeText(this,"Please Fill in username", Toast.LENGTH_LONG).show()
+            return
+        }
+        if (passWord.isBlank() ){
+            Toast.makeText(this,"Please Fill in password", Toast.LENGTH_LONG).show()
+            return
+        }
+        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1){
+            startActivity(intent)
+            return
+        }
+        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0){
+            startActivity(intent2)
+            return
+        }
+        if(userName == actualUsername.userName && passWord != actualUsername.passWord){
+            Toast.makeText(this,"password is wrong", Toast.LENGTH_LONG).show()
+            return
+        }
+        else
+
+        {
             Toast.makeText(this,"User does not exist ", Toast.LENGTH_LONG).show()
         }
     }
@@ -48,6 +61,13 @@ class MainActivity : AppCompatActivity() {
 
     fun register(view: View){
         val intent = Intent(this,RegisterPanel::class.java)
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 }
