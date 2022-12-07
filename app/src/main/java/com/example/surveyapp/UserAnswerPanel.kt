@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.surveyapp.Model.Answer
@@ -42,6 +43,20 @@ class UserAnswerPanel : AppCompatActivity() {
     }
 
     fun nextQuestion(view: View) {
+        val button1 = findViewById<RadioButton>(R.id.radioButton)
+        val button2 = findViewById<RadioButton>(R.id.radioButton2)
+        val button3 = findViewById<RadioButton>(R.id.radioButton3)
+        val button4 = findViewById<RadioButton>(R.id.radioButton4)
+        val button5 = findViewById<RadioButton>(R.id.radioButton5)
+
+        if (!button1.isChecked &&
+                !button2.isChecked &&
+                !button3.isChecked &&
+                !button4.isChecked &&
+                !button5.isChecked){
+            Toast.makeText(this,"Please check one option",Toast.LENGTH_SHORT).show()
+            return
+        }
         checkSelected()
         if (index + 1 != newArray.size) {
             index++
@@ -53,6 +68,7 @@ class UserAnswerPanel : AppCompatActivity() {
             findViewById<Button>(R.id.btn_completeAnswer).isVisible = true
             findViewById<Button>(R.id.btn_NextQuestion).isVisible = false
         }
+        uncheckSelect()
     }
 
     fun previousQuestion(view: View) {
@@ -69,7 +85,6 @@ class UserAnswerPanel : AppCompatActivity() {
 
         if (index + 1 == 1) {
             findViewById<Button>(R.id.btn_Previous).isVisible = false
-
         }
     }
 
@@ -108,6 +123,21 @@ class UserAnswerPanel : AppCompatActivity() {
         if (button5.isChecked) {
             answersTextArray.add(button5.text.toString())
         }
+    }
+
+    fun uncheckSelect() {
+        val button1 = findViewById<RadioButton>(R.id.radioButton)
+        val button2 = findViewById<RadioButton>(R.id.radioButton2)
+        val button3 = findViewById<RadioButton>(R.id.radioButton3)
+        val button4 = findViewById<RadioButton>(R.id.radioButton4)
+        val button5 = findViewById<RadioButton>(R.id.radioButton5)
+
+        button1.isChecked =false
+        button2.isChecked = false
+        button3.isChecked = false
+        button4.isChecked = false
+        button5.isChecked = false
+
     }
 
     fun cancelAnswers(view: View) {
