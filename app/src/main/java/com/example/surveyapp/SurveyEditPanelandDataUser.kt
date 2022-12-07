@@ -10,16 +10,21 @@ import androidx.core.view.isVisible
 import com.example.surveyapp.Model.Answer
 import com.example.surveyapp.Model.DataBaseHelper
 import com.example.surveyapp.Model.Question
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SurveyEditPanelandDataUser : AppCompatActivity() {
     val dbHelper: DataBaseHelper = DataBaseHelper(this)
 
     var surveyid = 0
     var transferUserId = 0
-
-    var surveyQuestionList = ArrayList<Question>()
-    var questionidList = ArrayList<Int>()
+    var alreadyAnswered = ArrayList<Int>()
+    var questionIdList = ArrayList<Int>()
     var answerList = ArrayList<Answer>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,26 +35,31 @@ class SurveyEditPanelandDataUser : AppCompatActivity() {
         transferUserId = intent.getIntExtra("userId", 0)
 
         val survey = dbHelper.getSurveyById(surveyid)
-        val surveyQuestions = dbHelper.getAllQuestionsBySurveyId(surveyid)
+        val answers = dbHelper.getAllAnswers()
+        val questions = dbHelper.getAllQuestionsBySurveyId(surveyid)
 
-        for (question in surveyQuestions) {
-            surveyQuestionList.add(question)
+        for (question in questions){
+            questionIdList.add(question.questionId)
         }
 
-        for (question in surveyQuestionList) {
-            questionidList.add(question.questionId)
+        for (id in questionIdList){
+            answerList = dbHelper.getAllAnswersByQuestionid(id)
         }
 
-        for (id in questionidList) {
-            val d = dbHelper.getAnswerbyQuestionId(id)
-            answerList.add(d)
+        for (id in 0 until answerList.size){
+            alreadyAnswered.add(answerList[id].userId)
         }
 
         findViewById<TextView>(R.id.text_editTitle2).text = survey.surveyTitle
-        findViewById<TextView>(R.id.text_editStartDate2).text = survey.surveyStartDate
-        findViewById<TextView>(R.id.text_editEndDate2).text = survey.surveyEndDate
+        var startdate = findViewById<TextView>(R.id.text_editStartDate2)
+        startdate.text = survey.surveyStartDate
+        var endDate = findViewById<TextView>(R.id.text_editEndDate2)
+        endDate.text = survey.surveyEndDate
 
-        if (transferUserId == answerList[0].userId) {
+        val current: LocalDate = LocalDate.now()
+        val localDate2: LocalDate = LocalDate.parse(endDate.text, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+
+        if (alreadyAnswered.contains(transferUserId) || localDate2<=current) {
             findViewById<Button>(R.id.btn_edit2).isVisible = false
         }
 

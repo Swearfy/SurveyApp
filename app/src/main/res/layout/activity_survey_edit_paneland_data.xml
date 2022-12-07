@@ -56,8 +56,8 @@
         android:id="@+id/text_editTitle"
         android:layout_width="311dp"
         android:layout_height="53dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
@@ -76,4 +76,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_edit"
         app:layout_constraintStart_toEndOf="@+id/btn_editBack" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="339dp"
+        android:layout_height="272dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="17dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/totalanswers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_editEndDate">
+
+        <ListView
+            android:id="@+id/resultListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/totalanswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/btn_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

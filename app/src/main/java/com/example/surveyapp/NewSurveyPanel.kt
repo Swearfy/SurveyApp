@@ -93,16 +93,20 @@ class NewSurveyPanel : AppCompatActivity() {
         val endDate = findViewById<TextView>(R.id.text_endDate).text.toString()
         val checkTitle = dbHelper.getSurvey(title)
 
-        if (title.isBlank()) {
+        if (title == "") {
             Toast.makeText(this, "Please enter a title", Toast.LENGTH_SHORT).show()
             return
         }
-        if (endDate.isBlank()) {
+        if (startDate == "") {
+            Toast.makeText(this, "Please add an start date", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (endDate == "") {
             Toast.makeText(this, "Please add an end date", Toast.LENGTH_SHORT).show()
             return
         }
 
-        if (checkTitle.toString() == title) {
+        if (checkTitle.surveyTitle == title) {
             Toast.makeText(
                 this,
                 "Survey already exists with this title please change it",
