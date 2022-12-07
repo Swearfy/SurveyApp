@@ -10,7 +10,7 @@ import java.sql.SQLException
 private val DataBaseName = "dataBaseSurvey.db"
 private val ver: Int = 1
 
-class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,null, ver) {
+class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName, null, ver) {
 
     /*User Table*/
     public val users = "Users"
@@ -77,7 +77,8 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
             db?.execSQL(sqlCreateStatement)
 
 
-        }catch (e: SQLException){ }
+        } catch (e: SQLException) {
+        }
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -86,22 +87,22 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
 
 
     // user getters
-    fun getAllUsers(): ArrayList<User>{
+    fun getAllUsers(): ArrayList<User> {
         val userList = ArrayList<User>()
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $users"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 val userId = cursor.getInt(0)
                 val userName = cursor.getString(1)
                 val passWord = cursor.getString(2)
                 val isAdmin = cursor.getInt(3)
-                val x = User(userId,userName,passWord,isAdmin)
+                val x = User(userId, userName, passWord, isAdmin)
                 userList.add(x)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         cursor.close()
         db.close()
@@ -109,35 +110,43 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         return userList
     }
 
-    fun getUserByID(uId: Int): User{
+    fun getUserByID(uId: Int): User {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $users WHERE $userId = $uId"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  User(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3))
-        }
-        else{
+            return User(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getInt(3)
+            )
+        } else {
             db.close()
-            return User(0,"User not found","Error",0)
+            return User(0, "User not found", "Error", 0)
         }
     }
 
-    fun getUser(uName: String): User{
+    fun getUser(uName: String): User {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $users WHERE $userName = '$uName'"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  User(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3))
-        }
-        else{
+            return User(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getInt(3)
+            )
+        } else {
             db.close()
-            return User(0,"User not found","Error",0)
+            return User(0, "User not found", "Error", 0)
         }
     }
 
@@ -146,57 +155,57 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(userName,user.userName)
-        cv.put(passWord,user.passWord)
-        cv.put(isAdmin,user.isAdmin)
+        cv.put(userName, user.userName)
+        cv.put(passWord, user.passWord)
+        cv.put(isAdmin, user.isAdmin)
 
-        val success = db.insert(users,null,cv)
+        val success = db.insert(users, null, cv)
         db.close()
         return success != -1L
 
     }
 
-    fun deleteUser(user: User): Boolean{
+    fun deleteUser(user: User): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(users,"$userId = ${user.userId}",null) == 1
+        val result = db.delete(users, "$userId = ${user.userId}", null) == 1
 
         db.close()
         return result
     }
 
-    fun updateUser(user: User): Boolean{
+    fun updateUser(user: User): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(userName,user.userName)
-        cv.put(passWord,user.passWord)
-        cv.put(isAdmin,user.isAdmin)
+        cv.put(userName, user.userName)
+        cv.put(passWord, user.passWord)
+        cv.put(isAdmin, user.isAdmin)
 
-        val result = db.update(users,cv,"$userId = ${user.userId}",null) ==1
+        val result = db.update(users, cv, "$userId = ${user.userId}", null) == 1
         db.close()
         return result
     }
 
     // survey getters
 
-    fun getAllSurveys(): ArrayList<Survey>{
+    fun getAllSurveys(): ArrayList<Survey> {
         val surveyList = ArrayList<Survey>()
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $surveys"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 val surveyId = cursor.getInt(0)
                 val surveyTitle = cursor.getString(1)
                 val surveyStartDate = cursor.getString(2)
                 val surveyEndDate = cursor.getString(3)
-                val x = Survey(surveyId,surveyTitle,surveyStartDate,surveyEndDate)
+                val x = Survey(surveyId, surveyTitle, surveyStartDate, surveyEndDate)
                 surveyList.add(x)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         cursor.close()
         db.close()
@@ -204,35 +213,43 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         return surveyList
     }
 
-    fun getSurvey(uName: String): Survey{
+    fun getSurvey(uName: String): Survey {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $surveys WHERE $surveyTitle = '$uName'"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  Survey(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3))
-        }
-        else{
+            return Survey(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+            )
+        } else {
             db.close()
-            return Survey(0,"User not found","Error","Error")
+            return Survey(0, "User not found", "Error", "Error")
         }
     }
 
-    fun getSurveyById(uId: Int): Survey{
+    fun getSurveyById(uId: Int): Survey {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $surveys WHERE $surveyId = $uId"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  Survey(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3))
-        }
-        else{
+            return Survey(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+            )
+        } else {
             db.close()
-            return Survey(0,"Survey not found","error","error")
+            return Survey(0, "Survey not found", "error", "error")
         }
     }
 
@@ -241,56 +258,56 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(surveyTitle,survey.surveyTitle)
-        cv.put(surveyStartDate,survey.surveyStartDate)
-        cv.put(surveyEndDate,survey.surveyEndDate)
+        cv.put(surveyTitle, survey.surveyTitle)
+        cv.put(surveyStartDate, survey.surveyStartDate)
+        cv.put(surveyEndDate, survey.surveyEndDate)
 
-        val success = db.insert(surveys,null,cv)
+        val success = db.insert(surveys, null, cv)
         db.close()
         return success != -1L
 
     }
 
-    fun deleteSurvey(survey: Int): Boolean{
+    fun deleteSurvey(survey: Int): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(surveys,"$surveyId = $survey",null) == 1
+        val result = db.delete(surveys, "$surveyId = $survey", null) == 1
 
         db.close()
         return result
     }
 
-    fun updateSurvey(survey: Survey): Boolean{
+    fun updateSurvey(survey: Survey): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(surveyTitle,survey.surveyTitle)
-        cv.put(surveyStartDate,survey.surveyStartDate)
-        cv.put(surveyEndDate,survey.surveyEndDate)
+        cv.put(surveyTitle, survey.surveyTitle)
+        cv.put(surveyStartDate, survey.surveyStartDate)
+        cv.put(surveyEndDate, survey.surveyEndDate)
 
-        val result = db.update(surveys,cv,"$surveyId = ${survey.surveyId}",null) ==1
+        val result = db.update(surveys, cv, "$surveyId = ${survey.surveyId}", null) == 1
         db.close()
         return result
     }
 
     //question getters
 
-    fun getAllQuestionsBySurveyId(id: Int): ArrayList<Question>{
+    fun getAllQuestionsBySurveyId(id: Int): ArrayList<Question> {
         val questionList = ArrayList<Question>()
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $questions WHERE $questionSurveyId = $id"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 val questionId = cursor.getInt(0)
                 val questionText = cursor.getString(1)
                 val surveyId = cursor.getInt(2)
-                val x = Question(questionId,questionText,surveyId)
+                val x = Question(questionId, questionText, surveyId)
                 questionList.add(x)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         cursor.close()
         db.close()
@@ -298,22 +315,20 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         return questionList
     }
 
-    fun getQuestion(uId: Int): Question{
+    fun getQuestion(uId: Int): Question {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $questions WHERE $questionId = $uId"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  Question(cursor.getInt(0),cursor.getString(1),cursor.getInt(2))
-        }
-        else{
+            return Question(cursor.getInt(0), cursor.getString(1), cursor.getInt(2))
+        } else {
             db.close()
-            return Question(0,"Error",0,)
+            return Question(0, "Error", 0)
         }
     }
-
 
 
     fun addQuestion(question: Question): Boolean {
@@ -321,55 +336,55 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(questionText,question.questionText)
-        cv.put(questionSurveyId,question.surveyId)
+        cv.put(questionText, question.questionText)
+        cv.put(questionSurveyId, question.surveyId)
 
-        val success = db.insert(questions,null,cv)
+        val success = db.insert(questions, null, cv)
         db.close()
         return success != -1L
 
     }
 
-    fun deleteQuestion(question: Int): Boolean{
+    fun deleteQuestion(question: Int): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(questions,"$questionId = $question",null) == 1
+        val result = db.delete(questions, "$questionId = $question", null) == 1
 
         db.close()
         return result
     }
 
-    fun updateQuetion(question: Question): Boolean{
+    fun updateQuetion(question: Question): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(questionText,question.questionText)
-        cv.put(questionSurveyId,question.surveyId)
+        cv.put(questionText, question.questionText)
+        cv.put(questionSurveyId, question.surveyId)
 
-        val result = db.update(questions,cv,"$questionId = ${question.questionId}",null) ==1
+        val result = db.update(questions, cv, "$questionId = ${question.questionId}", null) == 1
         db.close()
         return result
     }
 
     //answer getters
 
-    fun getAllAnswers(): ArrayList<Answer>{
+    fun getAllAnswers(): ArrayList<Answer> {
         val answersList = ArrayList<Answer>()
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $answers"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 val answerId = cursor.getInt(0)
                 val questionId = cursor.getInt(1)
                 val userId = cursor.getInt(2)
                 val answerText = cursor.getString(3)
-                val x = Answer(answerId,questionId,userId,answerText)
+                val x = Answer(answerId, questionId, userId, answerText)
                 answersList.add(x)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         cursor.close()
         db.close()
@@ -377,35 +392,33 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         return answersList
     }
 
-    fun getAnswer(uId: Int): Answer{
+    fun getAnswer(uId: Int): Answer {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $answers WHERE $answerId = $uId"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  Answer(cursor.getInt(0),cursor.getInt(1),cursor.getInt(2),cursor.getString(3))
-        }
-        else{
+            return Answer(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3))
+        } else {
             db.close()
-            return Answer(0,0,0,"error")
+            return Answer(0, 0, 0, "error")
         }
     }
 
-    fun getAnswerbyQuestionId(uId: Int): Answer{
+    fun getAnswerbyQuestionId(uId: Int): Answer {
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $answers WHERE $answerQuestionId = $uId"
 
-        val cursor: Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             db.close()
-            return  Answer(cursor.getInt(0),cursor.getInt(1),cursor.getInt(2),cursor.getString(3))
-        }
-        else{
+            return Answer(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3))
+        } else {
             db.close()
-            return Answer(0,0,0,"error")
+            return Answer(0, 0, 0, "error")
         }
     }
 
@@ -414,36 +427,36 @@ class DataBaseHelper(context: Context):SQLiteOpenHelper(context, DataBaseName,nu
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(answerText,answer.answerText)
-        cv.put(answerUserId,answer.userId)
-        cv.put(answerQuestionId,answer.questionId)
+        cv.put(answerText, answer.answerText)
+        cv.put(answerUserId, answer.userId)
+        cv.put(answerQuestionId, answer.questionId)
 
-        val success = db.insert(answers,null,cv)
+        val success = db.insert(answers, null, cv)
         db.close()
         return success != -1L
 
     }
 
-    fun deleteAnswer(answer: Int): Boolean{
+    fun deleteAnswer(answer: Int): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
-        val result = db.delete(answers,"$answerId = $answer",null) == 1
+        val result = db.delete(answers, "$answerId = $answer", null) == 1
 
         db.close()
         return result
     }
 
 
-    fun updateAnswer(answer: Answer): Boolean{
+    fun updateAnswer(answer: Answer): Boolean {
 
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
-        cv.put(answerText,answer.answerText)
-        cv.put(answerUserId,answer.userId)
-        cv.put(answerQuestionId,answer.questionId)
+        cv.put(answerText, answer.answerText)
+        cv.put(answerUserId, answer.userId)
+        cv.put(answerQuestionId, answer.questionId)
 
-        val result = db.update(answers,cv,"$answerId = ${answer.answerId}",null) ==1
+        val result = db.update(answers, cv, "$answerId = ${answer.answerId}", null) == 1
         db.close()
         return result
     }

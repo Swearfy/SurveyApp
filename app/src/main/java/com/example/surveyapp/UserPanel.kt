@@ -1,10 +1,10 @@
 package com.example.surveyapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 
 class UserPanel : AppCompatActivity() {
@@ -17,7 +17,7 @@ class UserPanel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_panel)
 
-        val userId = intent.getIntExtra("userId",0)
+        val userId = intent.getIntExtra("userId", 0)
 
         val surveyList = dbHelper.getAllSurveys()
         simpleList = findViewById<ListView>(R.id.listviewItem2)
@@ -30,18 +30,19 @@ class UserPanel : AppCompatActivity() {
         simpleList.setOnItemClickListener { parent, view, positon, id ->
             val surveyTitle = surveyList[positon]
 
-            val intent = Intent(this,SurveyEditPanelandDataUser::class.java)
-            intent.putExtra("surveyid",surveyTitle.surveyId)
-            intent.putExtra("userId",userId)
+            val intent = Intent(this, SurveyEditPanelandDataUser::class.java)
+            intent.putExtra("surveyid", surveyTitle.surveyId)
+            intent.putExtra("userId", userId)
 
             startActivity(intent)
         }
     }
 
-    fun logOutBtn(view: View){
-        val intent = Intent(this,MainActivity::class.java)
+    fun logOutBtn(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
     override fun onBackPressed() {
         return
     }

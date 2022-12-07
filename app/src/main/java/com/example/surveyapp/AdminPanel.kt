@@ -18,7 +18,7 @@ class AdminPanel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_panel)
 
-        val userId = intent.getIntExtra("userId",0)
+        val userId = intent.getIntExtra("userId", 0)
 
         val surveyList = dbHelper.getAllSurveys()
         simpleList = findViewById<ListView>(R.id.listviewItem)
@@ -31,20 +31,20 @@ class AdminPanel : AppCompatActivity() {
         simpleList.setOnItemClickListener { parent, view, positon, id ->
             val surveyTitle = surveyList[positon]
 
-            val intent = Intent(this,SurveyEditPanelandData::class.java)
-            intent.putExtra("surveyId",surveyTitle.surveyId)
+            val intent = Intent(this, SurveyEditPanelandData::class.java)
+            intent.putExtra("surveyId", surveyTitle.surveyId)
 
             startActivity(intent)
         }
     }
 
-    fun newSurveyButton(view: View){
-        val intent = Intent(this,NewSurveyPanel::class.java)
+    fun newSurveyButton(view: View) {
+        val intent = Intent(this, NewSurveyPanel::class.java)
         startActivity(intent)
     }
 
-    fun logOutBtn(view: View){
-        val intent = Intent(this,MainActivity::class.java)
+    fun logOutBtn(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 

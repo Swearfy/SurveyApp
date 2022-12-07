@@ -1,11 +1,11 @@
 package com.example.surveyapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 import com.example.surveyapp.Model.Question
 import com.example.surveyapp.Model.Survey
@@ -20,7 +20,7 @@ class QuestionPanel : AppCompatActivity() {
         setContentView(R.layout.activity_question_panel)
     }
 
-    fun publish(view: View){
+    fun publish(view: View) {
 
         val title = intent.getStringExtra("title").toString()
         val startDate = intent.getStringExtra("startDate").toString()
@@ -48,12 +48,13 @@ class QuestionPanel : AppCompatActivity() {
             question7.isBlank() ||
             question8.isBlank() ||
             question9.isBlank() ||
-            question10.isBlank()){
-            Toast.makeText(this,"Please fill in all the questions", Toast.LENGTH_SHORT).show()
+            question10.isBlank()
+        ) {
+            Toast.makeText(this, "Please fill in all the questions", Toast.LENGTH_SHORT).show()
             return
-        }else{
+        } else {
 
-            val survey = Survey(0,title, startDate,endDate)
+            val survey = Survey(0, title, startDate, endDate)
 
 
             if (dbHelper.addSurvey(survey)) {
@@ -63,22 +64,22 @@ class QuestionPanel : AppCompatActivity() {
                 val surveyFinder = dbHelper.getSurvey(survey.surveyTitle)
                 val surveyId = surveyFinder.surveyId
 
-                questionList.add(Question(0,question1,surveyId))
-                questionList.add(Question(0,question2,surveyId))
-                questionList.add(Question(0,question3,surveyId))
-                questionList.add(Question(0,question4,surveyId))
-                questionList.add(Question(0,question5,surveyId))
-                questionList.add(Question(0,question6,surveyId))
-                questionList.add(Question(0,question7,surveyId))
-                questionList.add(Question(0,question8,surveyId))
-                questionList.add(Question(0,question9,surveyId))
-                questionList.add(Question(0,question10,surveyId))
+                questionList.add(Question(0, question1, surveyId))
+                questionList.add(Question(0, question2, surveyId))
+                questionList.add(Question(0, question3, surveyId))
+                questionList.add(Question(0, question4, surveyId))
+                questionList.add(Question(0, question5, surveyId))
+                questionList.add(Question(0, question6, surveyId))
+                questionList.add(Question(0, question7, surveyId))
+                questionList.add(Question(0, question8, surveyId))
+                questionList.add(Question(0, question9, surveyId))
+                questionList.add(Question(0, question10, surveyId))
 
-                for (i in 0 until 10){
+                for (i in 0 until 10) {
                     dbHelper.addQuestion(questionList[i])
                 }
 
-                val intent = Intent(this,AdminPanel::class.java)
+                val intent = Intent(this, AdminPanel::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Error: The user not added", Toast.LENGTH_SHORT).show()
@@ -86,7 +87,8 @@ class QuestionPanel : AppCompatActivity() {
         }
 
     }
-    fun goBack(view: View){
+
+    fun goBack(view: View) {
         finish()
     }
 

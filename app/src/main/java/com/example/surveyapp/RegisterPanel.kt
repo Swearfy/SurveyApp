@@ -1,11 +1,11 @@
 package com.example.surveyapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 import com.example.surveyapp.Model.User
 
@@ -22,7 +22,7 @@ class RegisterPanel : AppCompatActivity() {
         toggle.text = "User"
         findViewById<EditText>(R.id.accesCode).visibility = View.INVISIBLE
 
-        toggle.setOnCheckedChangeListener{ _, isChecked ->
+        toggle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 toggle.text = "Admin"
                 findViewById<EditText>(R.id.accesCode).visibility = View.VISIBLE
@@ -67,7 +67,8 @@ class RegisterPanel : AppCompatActivity() {
                 return
             }
             if (accescode.toInt() != 1234) {
-                Toast.makeText(this, "You have entered the wrong access code", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You have entered the wrong access code", Toast.LENGTH_SHORT)
+                    .show()
                 return
             }
 
@@ -76,22 +77,23 @@ class RegisterPanel : AppCompatActivity() {
                 val checkuser = dbHelper.getUser(username).userName
                 val checkpassword = dbHelper.getUser(username).passWord
 
-                if(checkuser == username && checkpassword == password2 ||
-                    checkuser == username && checkpassword != password2 ){
-                    Toast.makeText(this,"User already exists",Toast.LENGTH_SHORT).show()
-                }else{
-
-                val user = User(0, username, password2, 1)
-
-                if (dbHelper.addUser(user)) {
-                    Toast.makeText(this, "User added", Toast.LENGTH_SHORT).show()
-                    findViewById<EditText>(R.id.text_UserNameRegister).text.clear()
-                    findViewById<EditText>(R.id.text_Password1).text.clear()
-                    findViewById<EditText>(R.id.text_Password2).text.clear()
-                    findViewById<EditText>(R.id.accesCode).text.clear()
+                if (checkuser == username && checkpassword == password2 ||
+                    checkuser == username && checkpassword != password2
+                ) {
+                    Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Error: The user not added", Toast.LENGTH_SHORT).show()
-                }
+
+                    val user = User(0, username, password2, 1)
+
+                    if (dbHelper.addUser(user)) {
+                        Toast.makeText(this, "User added", Toast.LENGTH_SHORT).show()
+                        findViewById<EditText>(R.id.text_UserNameRegister).text.clear()
+                        findViewById<EditText>(R.id.text_Password1).text.clear()
+                        findViewById<EditText>(R.id.text_Password2).text.clear()
+                        findViewById<EditText>(R.id.accesCode).text.clear()
+                    } else {
+                        Toast.makeText(this, "Error: The user not added", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
@@ -122,10 +124,11 @@ class RegisterPanel : AppCompatActivity() {
                 val checkuser = dbHelper.getUser(username).userName
                 val checkpassword = dbHelper.getUser(username).passWord
 
-                if(checkuser == username && checkpassword == password2 ||
-                    checkuser == username && checkpassword != password2 ){
-                    Toast.makeText(this,"User already exists",Toast.LENGTH_SHORT).show()
-                }else{
+                if (checkuser == username && checkpassword == password2 ||
+                    checkuser == username && checkpassword != password2
+                ) {
+                    Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show()
+                } else {
                     val user = User(0, username, password2, 0)
 
                     if (dbHelper.addUser(user)) {
@@ -141,7 +144,8 @@ class RegisterPanel : AppCompatActivity() {
         }
 
     }
-    fun goBackToLoging(view: View){
+
+    fun goBackToLoging(view: View) {
         finish()
     }
 

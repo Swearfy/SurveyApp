@@ -1,16 +1,18 @@
 package com.example.surveyapp
 
 import android.content.Context
-import android.widget.BaseAdapter
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.TextView
 import com.example.surveyapp.Model.Survey
 
-class App(private val appContext: Context, private val surveyList: ArrayList<Survey>): BaseAdapter() {
+class App(private val appContext: Context, private val surveyList: ArrayList<Survey>) :
+    BaseAdapter() {
 
-    private val inflater: LayoutInflater =  appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater =
+        appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getItem(p0: Int): Any {
         return p0
@@ -41,8 +43,6 @@ class App(private val appContext: Context, private val surveyList: ArrayList<Sur
 
         return view
     }
-
-
 
 
 }

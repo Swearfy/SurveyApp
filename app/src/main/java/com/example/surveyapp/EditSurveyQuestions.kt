@@ -1,11 +1,11 @@
 package com.example.surveyapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 import com.example.surveyapp.Model.Question
 import com.example.surveyapp.Model.Survey
@@ -20,13 +20,13 @@ class EditSurveyQuestions : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_survey_questions)
-        val transferId = intent.getIntExtra("surveyId",0)
+        val transferId = intent.getIntExtra("surveyId", 0)
 
         transferId2 = transferId
         val questions = dbHelper.getAllQuestionsBySurveyId(transferId2)
 
 
-        for (question in questions){
+        for (question in questions) {
             newArray.add(question)
         }
 
@@ -43,7 +43,7 @@ class EditSurveyQuestions : AppCompatActivity() {
 
     }
 
-    fun publish2(view: View){
+    fun publish2(view: View) {
 
 
         val title = intent.getStringExtra("title").toString()
@@ -71,30 +71,31 @@ class EditSurveyQuestions : AppCompatActivity() {
             question7.isBlank() ||
             question8.isBlank() ||
             question9.isBlank() ||
-            question10.isBlank()){
-            Toast.makeText(this,"Please fill in all the questions", Toast.LENGTH_SHORT).show()
+            question10.isBlank()
+        ) {
+            Toast.makeText(this, "Please fill in all the questions", Toast.LENGTH_SHORT).show()
             return
-        }else{
-            val survey = Survey(transferId2,title, startDate,endDate)
+        } else {
+            val survey = Survey(transferId2, title, startDate, endDate)
             if (dbHelper.updateSurvey(survey)) {
                 Toast.makeText(this, "Survey updated", Toast.LENGTH_SHORT).show()
 
-                questionUpdateList.add(Question(newArray[0].questionId,question1,transferId2))
-                questionUpdateList.add(Question(newArray[1].questionId,question2,transferId2))
-                questionUpdateList.add(Question(newArray[2].questionId,question3,transferId2))
-                questionUpdateList.add(Question(newArray[3].questionId,question4,transferId2))
-                questionUpdateList.add(Question(newArray[4].questionId,question5,transferId2))
-                questionUpdateList.add(Question(newArray[5].questionId,question6,transferId2))
-                questionUpdateList.add(Question(newArray[6].questionId,question7,transferId2))
-                questionUpdateList.add(Question(newArray[7].questionId,question8,transferId2))
-                questionUpdateList.add(Question(newArray[8].questionId,question9,transferId2))
-                questionUpdateList.add(Question(newArray[9].questionId,question10,transferId2))
+                questionUpdateList.add(Question(newArray[0].questionId, question1, transferId2))
+                questionUpdateList.add(Question(newArray[1].questionId, question2, transferId2))
+                questionUpdateList.add(Question(newArray[2].questionId, question3, transferId2))
+                questionUpdateList.add(Question(newArray[3].questionId, question4, transferId2))
+                questionUpdateList.add(Question(newArray[4].questionId, question5, transferId2))
+                questionUpdateList.add(Question(newArray[5].questionId, question6, transferId2))
+                questionUpdateList.add(Question(newArray[6].questionId, question7, transferId2))
+                questionUpdateList.add(Question(newArray[7].questionId, question8, transferId2))
+                questionUpdateList.add(Question(newArray[8].questionId, question9, transferId2))
+                questionUpdateList.add(Question(newArray[9].questionId, question10, transferId2))
 
-                for (i in 0 until 10){
+                for (i in 0 until 10) {
                     dbHelper.updateQuetion(questionUpdateList[i])
                 }
 
-                val intent = Intent(this,AdminPanel::class.java)
+                val intent = Intent(this, AdminPanel::class.java)
                 startActivity(intent)
 
             } else {
@@ -103,7 +104,8 @@ class EditSurveyQuestions : AppCompatActivity() {
         }
 
     }
-    fun goBack2(view: View){
+
+    fun goBack2(view: View) {
         finish()
     }
 

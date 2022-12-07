@@ -17,51 +17,50 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun login(view :View){
+    fun login(view: View) {
 
-        val intent = Intent(this,AdminPanel::class.java)
-        val intent2 = Intent(this,UserPanel::class.java)
+        val intent = Intent(this, AdminPanel::class.java)
+        val intent2 = Intent(this, UserPanel::class.java)
 
         val userName = findViewById<EditText>(R.id.text_username).text.toString()
         val passWord = findViewById<EditText>(R.id.text_Password).text.toString()
 
         val actualUsername = dbHelper.getUser(userName)
 
-        if (userName.isBlank() && passWord.isBlank()){
-            Toast.makeText(this,"Please Fill in the boxes above", Toast.LENGTH_LONG).show()
+        if (userName.isBlank() && passWord.isBlank()) {
+            Toast.makeText(this, "Please Fill in the boxes above", Toast.LENGTH_LONG).show()
             return
         }
-        if (userName.isBlank() ){
-            Toast.makeText(this,"Please Fill in username", Toast.LENGTH_LONG).show()
+        if (userName.isBlank()) {
+            Toast.makeText(this, "Please Fill in username", Toast.LENGTH_LONG).show()
             return
         }
-        if (passWord.isBlank() ){
-            Toast.makeText(this,"Please Fill in password", Toast.LENGTH_LONG).show()
+        if (passWord.isBlank()) {
+            Toast.makeText(this, "Please Fill in password", Toast.LENGTH_LONG).show()
             return
         }
 
-        if(userName == actualUsername.userName && passWord != actualUsername.passWord){
-            Toast.makeText(this,"password is wrong", Toast.LENGTH_LONG).show()
+        if (userName == actualUsername.userName && passWord != actualUsername.passWord) {
+            Toast.makeText(this, "password is wrong", Toast.LENGTH_LONG).show()
             return
         }
-        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0){
-            intent2.putExtra("userId",actualUsername.userId)
+        if (userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 0) {
+            intent2.putExtra("userId", actualUsername.userId)
             startActivity(intent2)
             return
         }
-        if(userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1){
-            intent.putExtra("userId",actualUsername.userId)
+        if (userName == actualUsername.userName && passWord == actualUsername.passWord && actualUsername.isAdmin == 1) {
+            intent.putExtra("userId", actualUsername.userId)
             startActivity(intent)
             return
-        }
-        else{
-            Toast.makeText(this,"User does not exist ", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "User does not exist ", Toast.LENGTH_LONG).show()
         }
     }
 
 
-    fun register(view: View){
-        val intent = Intent(this,RegisterPanel::class.java)
+    fun register(view: View) {
+        val intent = Intent(this, RegisterPanel::class.java)
         startActivity(intent)
     }
 
