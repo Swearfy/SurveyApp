@@ -28,7 +28,7 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -51,12 +51,12 @@
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_completeAnswer"
-        android:layout_width="115dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginBottom="56dp"
         android:onClick="complete"

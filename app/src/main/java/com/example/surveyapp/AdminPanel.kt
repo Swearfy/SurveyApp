@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 
@@ -19,6 +20,8 @@ class AdminPanel : AppCompatActivity() {
         setContentView(R.layout.activity_admin_panel)
 
         val userId = intent.getIntExtra("userId", 0)
+        val findUser = dbHelper.getUserByID(userId)
+        findViewById<TextView>(R.id.welcome).text = "Welcome, " + findUser.userName + "!"
 
         val surveyList = dbHelper.getAllSurveys()
         simpleList = findViewById<ListView>(R.id.listviewItem)

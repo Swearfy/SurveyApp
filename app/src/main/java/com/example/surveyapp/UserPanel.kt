@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
 
@@ -19,6 +20,9 @@ class UserPanel : AppCompatActivity() {
 
         val userId = intent.getIntExtra("userId", 0)
 
+        val findUser = dbHelper.getUserByID(userId)
+        findViewById<TextView>(R.id.textView9).text = "Welcome, " + findUser.userName + "!"
+
         val surveyList = dbHelper.getAllSurveys()
         simpleList = findViewById<ListView>(R.id.listviewItem2)
 
@@ -30,9 +34,11 @@ class UserPanel : AppCompatActivity() {
         simpleList.setOnItemClickListener { parent, view, positon, id ->
             val surveyTitle = surveyList[positon]
 
+
             val intent = Intent(this, SurveyEditPanelandDataUser::class.java)
             intent.putExtra("surveyid", surveyTitle.surveyId)
             intent.putExtra("userId", userId)
+
 
             startActivity(intent)
         }

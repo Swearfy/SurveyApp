@@ -59,7 +59,6 @@ class UserAnswerPanel : AppCompatActivity() {
             return
         }
         checkSelected()
-        findViewById<RadioGroup>(R.id.radioGroup).clearCheck()
         if (index + 1 != newArray.size) {
             index++
             findViewById<TextView>(R.id.text_Question).text = newArray[index].questionText
@@ -124,6 +123,7 @@ class UserAnswerPanel : AppCompatActivity() {
         if (button5.isChecked) {
             answersTextArray.add(button5.text.toString())
         }
+        findViewById<RadioGroup>(R.id.radioGroup).clearCheck()
     }
 
     fun cancelAnswers(view: View) {
