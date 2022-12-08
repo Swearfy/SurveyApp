@@ -25,6 +25,7 @@ class UserAnswerPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_answer_panel)
+        supportActionBar?.title = ""
 
         surveyId = intent.getIntExtra("surveyid", 0)
         userId = intent.getIntExtra("userId", 0)
@@ -90,7 +91,20 @@ class UserAnswerPanel : AppCompatActivity() {
 
     fun complete(view: View) {
         val intent = Intent(this, UserPanel::class.java)
+        val button1 = findViewById<RadioButton>(R.id.radioButton)
+        val button2 = findViewById<RadioButton>(R.id.radioButton2)
+        val button3 = findViewById<RadioButton>(R.id.radioButton3)
+        val button4 = findViewById<RadioButton>(R.id.radioButton4)
+        val button5 = findViewById<RadioButton>(R.id.radioButton5)
 
+        if (!button1.isChecked &&
+            !button2.isChecked &&
+            !button3.isChecked &&
+            !button4.isChecked &&
+            !button5.isChecked){
+            Toast.makeText(this,"Please check one option",Toast.LENGTH_SHORT).show()
+            return
+        }
         checkSelected()
 
         for (i in 0 until 10) {
