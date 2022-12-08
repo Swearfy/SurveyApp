@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -58,6 +59,7 @@ class UserAnswerPanel : AppCompatActivity() {
             return
         }
         checkSelected()
+        findViewById<RadioGroup>(R.id.radioGroup).clearCheck()
         if (index + 1 != newArray.size) {
             index++
             findViewById<TextView>(R.id.text_Question).text = newArray[index].questionText
@@ -68,7 +70,6 @@ class UserAnswerPanel : AppCompatActivity() {
             findViewById<Button>(R.id.btn_completeAnswer).isVisible = true
             findViewById<Button>(R.id.btn_NextQuestion).isVisible = false
         }
-        uncheckSelect()
     }
 
     fun previousQuestion(view: View) {
@@ -123,21 +124,6 @@ class UserAnswerPanel : AppCompatActivity() {
         if (button5.isChecked) {
             answersTextArray.add(button5.text.toString())
         }
-    }
-
-    fun uncheckSelect() {
-        val button1 = findViewById<RadioButton>(R.id.radioButton)
-        val button2 = findViewById<RadioButton>(R.id.radioButton2)
-        val button3 = findViewById<RadioButton>(R.id.radioButton3)
-        val button4 = findViewById<RadioButton>(R.id.radioButton4)
-        val button5 = findViewById<RadioButton>(R.id.radioButton5)
-
-        button1.isChecked =false
-        button2.isChecked = false
-        button3.isChecked = false
-        button4.isChecked = false
-        button5.isChecked = false
-
     }
 
     fun cancelAnswers(view: View) {

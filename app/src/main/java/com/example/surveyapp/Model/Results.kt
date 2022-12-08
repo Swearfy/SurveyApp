@@ -30,7 +30,7 @@ class Results(private val appContext: Context,private val resultsList: ArrayList
 
         view = inflater.inflate(R.layout.activity_result_list_view, parent, false)
 
-        val questionNo = view.findViewById<TextView>(R.id.text_QuestionNo)
+        val questionNo = view.findViewById<TextView>(R.id.questionNo)
         val result1 = view.findViewById<TextView>(R.id.text_result1)
         val result2 = view.findViewById<TextView>(R.id.text_result2)
         val result3 = view.findViewById<TextView>(R.id.text_result3)
@@ -38,6 +38,7 @@ class Results(private val appContext: Context,private val resultsList: ArrayList
         val result5 = view.findViewById<TextView>(R.id.text_result5)
 
 
+        questionNo.text = "Question: "+resultsList[p0].x.toString()
         result1.text = resultsList[p0].result1.toString() + "%"
         result2.text = resultsList[p0].result2.toString()+ "%"
         result3.text = resultsList[p0].result3.toString()+ "%"

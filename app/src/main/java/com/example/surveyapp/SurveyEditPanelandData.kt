@@ -42,6 +42,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
 
         var totalAnswers = answerList.size
 
+        var j = 1
 
         try {
             for (questionId in questionIdList) {
@@ -76,11 +77,11 @@ class SurveyEditPanelandData : AppCompatActivity() {
                 var c = neither.toDouble()/(totalAnswers/10)*100
                 var d = disagre.toDouble()/(totalAnswers/10)*100
                 var x = strongDisagree.toDouble()/(totalAnswers/10)*100
-                resultList.add(Result(totalAnswers,a.roundToInt(),b.roundToInt(),c.roundToInt(),d.roundToInt(),x.roundToInt()))
+                resultList.add(Result(j++,totalAnswers,a.roundToInt(),b.roundToInt(),c.roundToInt(),d.roundToInt(),x.roundToInt()))
             }
         }catch (e: IllegalArgumentException){
             for (questionId in questionIdList){
-                resultList.add(Result(0,0,0,0,0,0))
+                resultList.add(Result(j,0,0,0,0,0,0))
             }
         }
 
