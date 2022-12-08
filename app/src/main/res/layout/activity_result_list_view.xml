@@ -13,50 +13,51 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
+
         <TextView
-            android:id="@+id/text_QuestionNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/questionNo"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:padding="2dp"
-            android:textColor="@color/black" />
+            android:text="TextView" />
 
         <TextView
             android:id="@+id/text_result1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:padding="2dp"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_result2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:padding="2dp"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_result3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:padding="2dp"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_result4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:padding="2dp"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_result5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:padding="2dp"
             android:textColor="@color/black" />

@@ -5,41 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QuestionPanel"
-    tools:layout_editor_absoluteX="8dp"
-    tools:layout_editor_absoluteY="190dp">
+>
 
     <Button
         android:id="@+id/btn_goBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="52dp"
         android:onClick="goBack"
         android:text="Go Back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_question10" />
 
     <EditText
         android:id="@+id/text_question"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 1"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/text_question8"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 8"
         android:inputType="textPersonName"
@@ -49,10 +50,11 @@
 
     <EditText
         android:id="@+id/text_question10"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 10"
         android:inputType="textPersonName"
@@ -62,10 +64,11 @@
 
     <EditText
         android:id="@+id/text_question9"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 9"
         android:inputType="textPersonName"
@@ -75,10 +78,11 @@
 
     <EditText
         android:id="@+id/text_question7"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 7"
         android:inputType="textPersonName"
@@ -88,10 +92,11 @@
 
     <EditText
         android:id="@+id/text_question6"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 6"
         android:inputType="textPersonName"
@@ -101,10 +106,11 @@
 
     <EditText
         android:id="@+id/text_question3"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 3"
         android:inputType="textPersonName"
@@ -114,10 +120,11 @@
 
     <EditText
         android:id="@+id/text_question4"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 4"
         android:inputType="textPersonName"
@@ -127,10 +134,11 @@
 
     <EditText
         android:id="@+id/text_question5"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Question 5"
         android:inputType="textPersonName"
@@ -140,10 +148,11 @@
 
     <EditText
         android:id="@+id/text_question2"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:ems="2"
         android:hint="Question 2"
         android:inputType="textPersonName"
@@ -155,11 +164,13 @@
         android:id="@+id/btn_publish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="58dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="52dp"
         android:onClick="publish"
         android:text="Publish"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_question10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

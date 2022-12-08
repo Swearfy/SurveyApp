@@ -13,60 +13,63 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="91dp"
         android:layout_marginEnd="24dp"
-        android:text="TextView"
+        android:text="Question"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_NextQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="56dp"
         android:onClick="nextQuestion"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_Previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="56dp"
         android:onClick="previousQuestion"
         android:text="Previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="56dp"
         android:onClick="cancelAnswers"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_completeAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="56dp"
         android:onClick="complete"
         android:text="Complete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="352dp"
+        android:layout_height="325dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="24dp"
