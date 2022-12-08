@@ -23,6 +23,7 @@ class NewSurveyPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_survey_panel)
+        supportActionBar?.title = ""
 
         startDate = findViewById<TextView>(R.id.text_startDate)
         endDate = findViewById<TextView>(R.id.text_endDate)

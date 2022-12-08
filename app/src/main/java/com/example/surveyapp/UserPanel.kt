@@ -17,6 +17,7 @@ class UserPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_panel)
+        supportActionBar?.title = ""
 
         val userId = intent.getIntExtra("userId", 0)
 

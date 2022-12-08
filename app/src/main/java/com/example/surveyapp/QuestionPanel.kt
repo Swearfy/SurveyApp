@@ -18,6 +18,7 @@ class QuestionPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_panel)
+        supportActionBar?.title = ""
     }
 
     fun publish(view: View) {

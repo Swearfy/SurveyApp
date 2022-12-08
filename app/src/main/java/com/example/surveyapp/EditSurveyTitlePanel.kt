@@ -24,6 +24,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_survey_title_panel)
+        supportActionBar?.title = ""
 
         val id = intent.getIntExtra("surveyId", 0)
         val chosenIdSurvey = dbHelper.getSurveyById(id)

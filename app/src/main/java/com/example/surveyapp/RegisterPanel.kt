@@ -16,6 +16,7 @@ class RegisterPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_panel)
+        supportActionBar?.title = ""
 
         val toggle = findViewById<Switch>(R.id.btn_SwitchLogin)
 

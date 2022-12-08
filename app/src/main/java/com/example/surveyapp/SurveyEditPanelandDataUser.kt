@@ -32,6 +32,7 @@ class SurveyEditPanelandDataUser : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_edit_paneland_data_user)
+        supportActionBar?.title = ""
 
         surveyid = intent.getIntExtra("surveyid", 0)
         transferUserId = intent.getIntExtra("userId", 0)

@@ -25,6 +25,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_edit_paneland_data)
+        supportActionBar?.title = ""
 
         chosensurveyId = intent.getIntExtra("surveyId", 0)
 
@@ -40,7 +41,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
             answerList.addAll(dbHelper.getAllAnswersByQuestionid(id))
         }
 
-        var totalAnswers = answerList.size
+        var totalAnswers = answerList.size/10
 
         var j = 1
 
@@ -89,7 +90,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
         findViewById<TextView>(R.id.text_editTitle).text = survey.surveyTitle
         findViewById<TextView>(R.id.text_editStartDate).text = survey.surveyStartDate
         findViewById<TextView>(R.id.text_editEndDate).text = survey.surveyEndDate
-        findViewById<TextView>(R.id.totalanswers).text = totalAnswers.toString()
+        findViewById<TextView>(R.id.totalanswers).text = "Total responses " + totalAnswers.toString()
 
         simpleList = findViewById<ListView>(R.id.resultListView)
 

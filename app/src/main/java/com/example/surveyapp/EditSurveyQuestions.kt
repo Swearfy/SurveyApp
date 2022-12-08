@@ -20,6 +20,8 @@ class EditSurveyQuestions : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_survey_questions)
+        supportActionBar?.title = ""
+
         val transferId = intent.getIntExtra("surveyId", 0)
 
         transferId2 = transferId

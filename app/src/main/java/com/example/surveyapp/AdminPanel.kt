@@ -18,6 +18,7 @@ class AdminPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_panel)
+        supportActionBar?.title = ""
 
         val userId = intent.getIntExtra("userId", 0)
         val findUser = dbHelper.getUserByID(userId)

@@ -18,6 +18,8 @@
             android:id="@+id/questionNo"
             android:layout_width="60dp"
             android:layout_height="30dp"
+            android:textColor="@color/purple_700"
+            android:textColorHint="@color/purple_700"
             android:layout_weight="1"
             android:padding="2dp"
             android:text="TextView" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CCCCFF"
     tools:context=".NewSurveyPanel">
 
     <Button
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginBottom="136dp"
+        android:backgroundTint="@color/purple_700"
         android:onClick="goBack"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
         android:layout_marginBottom="136dp"
+        android:backgroundTint="@color/purple_700"
         android:onClick="next"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +40,8 @@
         android:ems="10"
         android:hint="End Date"
         android:inputType="date"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
@@ -49,6 +54,8 @@
         android:ems="10"
         android:hint="Start Date"
         android:inputType="date"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
@@ -62,6 +69,8 @@
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
