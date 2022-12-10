@@ -2,6 +2,8 @@ package com.example.surveyapp
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.surveyapp.Model.DataBaseHelper
+import com.example.surveyapp.Model.User
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,4 +21,16 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.surveyapp", appContext.packageName)
     }
+
+    @Test
+    fun register(){
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val dbhelper = DataBaseHelper(appContext)
+        val input = User(0,"TestUser","TestPassword",1)
+        val expected = User(15,"TestUser","TestPassword",1)
+        dbhelper.addUser(input)
+        assertEquals(expected,dbhelper.getUser(input.userName))
+    }
+
 }

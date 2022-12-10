@@ -20,6 +20,8 @@ class NewSurveyPanel : AppCompatActivity() {
 
     lateinit var startDate: TextView
     lateinit var endDate: TextView
+    var userId = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_survey_panel)
@@ -34,6 +36,7 @@ class NewSurveyPanel : AppCompatActivity() {
         val newStartDate = Calendar.getInstance()
         val newEndDate = Calendar.getInstance()
 
+        userId = intent.getIntExtra("userId", 0)
 
         val startDateSetListener =
             OnDateSetListener { _, year, month, dayOfMonth ->
@@ -120,7 +123,7 @@ class NewSurveyPanel : AppCompatActivity() {
             intent.putExtra("title", title)
             intent.putExtra("startDate", startDate)
             intent.putExtra("endDate", endDate)
-
+            intent.putExtra("userId",userId)
             startActivity(intent)
         }
     }

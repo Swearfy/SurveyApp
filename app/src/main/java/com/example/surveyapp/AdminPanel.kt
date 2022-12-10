@@ -12,7 +12,7 @@ class AdminPanel : AppCompatActivity() {
 
     lateinit var simpleList: ListView
 
-
+    var userId = 0
     val dbHelper: DataBaseHelper = DataBaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class AdminPanel : AppCompatActivity() {
         setContentView(R.layout.activity_admin_panel)
         supportActionBar?.title = ""
 
-        val userId = intent.getIntExtra("userId", 0)
+        userId = intent.getIntExtra("userId", 0)
         val findUser = dbHelper.getUserByID(userId)
         findViewById<TextView>(R.id.welcome).text = "Welcome, " + findUser.userName + "!"
 
@@ -36,7 +36,7 @@ class AdminPanel : AppCompatActivity() {
             val surveyTitle = surveyList[positon]
 
             val intent = Intent(this, SurveyEditPanelandData::class.java)
-            intent.putExtra("surveyId", surveyTitle.surveyId)
+            intent.putExtra("surveyid", surveyTitle.surveyId)
 
             startActivity(intent)
         }
@@ -44,6 +44,7 @@ class AdminPanel : AppCompatActivity() {
 
     fun newSurveyButton(view: View) {
         val intent = Intent(this, NewSurveyPanel::class.java)
+        intent.putExtra("userId",userId)
         startActivity(intent)
     }
 

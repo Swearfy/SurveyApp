@@ -14,11 +14,11 @@ import kotlin.math.roundToInt
 class SurveyEditPanelandData : AppCompatActivity() {
 
     val dbHelper: DataBaseHelper = DataBaseHelper(this)
-    var newArray = ArrayList<Question>()
+    val questions = ArrayList<Question>()
     var answerList = ArrayList<Answer>()
     var questionIdList = ArrayList<Int>()
     var resultList = ArrayList<com.example.surveyapp.Model.Result>()
-    var chosensurveyId = 0
+    var surveyid = 0
     lateinit var simpleList: ListView
 
 
@@ -27,13 +27,13 @@ class SurveyEditPanelandData : AppCompatActivity() {
         setContentView(R.layout.activity_survey_edit_paneland_data)
         supportActionBar?.title = ""
 
-        chosensurveyId = intent.getIntExtra("surveyId", 0)
+        surveyid = intent.getIntExtra("surveyid", 0)
 
-        val survey = dbHelper.getSurveyById(chosensurveyId)
+        val survey = dbHelper.getSurveyById(surveyid)
         val answers = dbHelper.getAllAnswers()
-        newArray = dbHelper.getAllQuestionsBySurveyId(chosensurveyId)
+        val questions = dbHelper.getAllQuestionsBySurveyId(surveyid)
 
-        for (question in newArray){
+        for (question in questions){
             questionIdList.add(question.questionId)
         }
 
@@ -41,7 +41,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
             answerList.addAll(dbHelper.getAllAnswersByQuestionid(id))
         }
 
-        var totalAnswers = answerList.size/10
+        var totalAnswers = answerList.size
 
         var j = 1
 
@@ -86,7 +86,6 @@ class SurveyEditPanelandData : AppCompatActivity() {
             }
         }
 
-
         findViewById<TextView>(R.id.text_editTitle).text = survey.surveyTitle
         findViewById<TextView>(R.id.text_editStartDate).text = survey.surveyStartDate
         findViewById<TextView>(R.id.text_editEndDate).text = survey.surveyEndDate
@@ -102,18 +101,18 @@ class SurveyEditPanelandData : AppCompatActivity() {
 
     fun edit(view: View) {
         val intent = Intent(this, EditSurveyTitlePanel::class.java)
-        intent.putExtra("surveyId", chosensurveyId)
+        intent.putExtra("surveyId", surveyid)
         startActivity(intent)
     }
 
 
     fun delete(view: View) {
 
-        if (dbHelper.deleteSurvey(chosensurveyId)) {
+        if (dbHelper.deleteSurvey(surveyid)) {
             val intent = Intent(this, AdminPanel::class.java)
 
             for (i in 0 until 10) {
-                dbHelper.deleteQuestion(newArray[i].questionId)
+                dbHelper.deleteQuestion(questions[i].questionId)
             }
 
             for (i in 0 until answerList.size) {
@@ -125,6 +124,13 @@ class SurveyEditPanelandData : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun seeIndividual(view: View) {
+        val intent = Intent(this, PieChart::class.java)
+        intent.putExtra("surveyid",surveyid)
+        startActivity(intent)
+
     }
 
     fun goBack(view: View) {
