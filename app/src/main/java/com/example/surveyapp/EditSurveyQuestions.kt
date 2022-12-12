@@ -15,7 +15,7 @@ class EditSurveyQuestions : AppCompatActivity() {
     var transferId2 = 0
     val newArray = ArrayList<Question>()
     val questionUpdateList = ArrayList<Question>()
-
+    var userIddddd = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class EditSurveyQuestions : AppCompatActivity() {
         supportActionBar?.title = ""
 
         val transferId = intent.getIntExtra("surveyId", 0)
-
+        userIddddd = intent.getIntExtra("userId",0)
         transferId2 = transferId
         val questions = dbHelper.getAllQuestionsBySurveyId(transferId2)
 
@@ -45,7 +45,7 @@ class EditSurveyQuestions : AppCompatActivity() {
 
     }
 
-    fun publish2(view: View) {
+    fun publishv2(view: View) {
 
 
         val title = intent.getStringExtra("title").toString()
@@ -98,6 +98,7 @@ class EditSurveyQuestions : AppCompatActivity() {
                 }
 
                 val intent = Intent(this, AdminPanel::class.java)
+                intent.putExtra("userId",userIddddd)
                 startActivity(intent)
 
             } else {

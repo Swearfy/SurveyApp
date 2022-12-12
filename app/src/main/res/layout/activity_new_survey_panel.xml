@@ -60,20 +60,20 @@
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
     <EditText
-        android:id="@+id/text_title"
-        android:layout_width="311dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:hint="Title"
-        android:inputType="textPersonName"
-        android:textColor="@color/purple_700"
-        android:textColorHint="@color/purple_700"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/text_title"
+            android:layout_width="311dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="100dp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            android:textColor="@color/purple_700"
+            android:textColorHint="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

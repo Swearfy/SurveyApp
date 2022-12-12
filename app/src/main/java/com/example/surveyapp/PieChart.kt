@@ -36,7 +36,8 @@ class PieChart : AppCompatActivity() {
         pieChart = findViewById(R.id.piechart)
 
         findViewById<Button>(R.id.button4).isVisible = false
-        chosensurveyId = intent.getIntExtra("surveyid", 0)
+        var getchosenid = intent.getIntExtra("surveyid", 0)
+        chosensurveyId = getchosenid
 
         val questions = dbHelper.getAllQuestionsBySurveyId(chosensurveyId)
 

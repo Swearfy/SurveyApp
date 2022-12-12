@@ -27,8 +27,11 @@ class UserAnswerPanel : AppCompatActivity() {
         setContentView(R.layout.activity_user_answer_panel)
         supportActionBar?.title = ""
 
-        surveyId = intent.getIntExtra("surveyid", 0)
-        userId = intent.getIntExtra("userId", 0)
+        var getsurveyid = intent.getIntExtra("surveyid", 0)
+        var getuserid = intent.getIntExtra("userId", 0)
+
+        surveyId =  getsurveyid
+        userId =  getuserid
 
         val questions = dbHelper.getAllQuestionsBySurveyId(surveyId)
 

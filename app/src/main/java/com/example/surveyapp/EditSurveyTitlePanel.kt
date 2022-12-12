@@ -19,7 +19,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
     var transferId = 0
     lateinit var startDate2: TextView
     lateinit var endDate2: TextView
-
+    var userIdddd = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
         supportActionBar?.title = ""
 
         val id = intent.getIntExtra("surveyId", 0)
+        userIdddd = intent.getIntExtra("userId",0)
         val chosenIdSurvey = dbHelper.getSurveyById(id)
 
         startDate2 = findViewById(R.id.text_startDate2)
@@ -111,6 +112,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
             return
         }
         intent.putExtra("surveyId", transferId)
+        intent.putExtra("userId",userIdddd)
         intent.putExtra("title", title)
         intent.putExtra("startDate", startDate)
         intent.putExtra("endDate", endDate)

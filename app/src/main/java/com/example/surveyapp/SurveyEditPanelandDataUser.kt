@@ -34,8 +34,10 @@ class SurveyEditPanelandDataUser : AppCompatActivity() {
         setContentView(R.layout.activity_survey_edit_paneland_data_user)
         supportActionBar?.title = ""
 
-        surveyid = intent.getIntExtra("surveyid", 0)
-        transferUserId = intent.getIntExtra("userId", 0)
+       var getsurveyId = intent.getIntExtra("surveyid", 0)
+        var getuserid = intent.getIntExtra("userId", 0)
+        surveyid = getsurveyId
+        transferUserId = getuserid
 
         val survey = dbHelper.getSurveyById(surveyid)
         val answers = dbHelper.getAllAnswers()

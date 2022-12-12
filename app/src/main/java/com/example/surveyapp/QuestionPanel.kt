@@ -14,14 +14,15 @@ class QuestionPanel : AppCompatActivity() {
 
     val dbHelper = DataBaseHelper(this)
     val questionList = ArrayList<Question>()
-    var userId = 0
+    var userIddd = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_panel)
         supportActionBar?.title = ""
-        userId = intent.getIntExtra("userId", 0)
+        var getuserid = intent.getIntExtra("userId", 0)
 
+        userIddd = getuserid
     }
 
     fun publish(view: View) {
@@ -84,7 +85,7 @@ class QuestionPanel : AppCompatActivity() {
                 }
 
                 val intent = Intent(this, AdminPanel::class.java)
-                intent.putExtra("userId",userId)
+                intent.putExtra("userId",userIddd)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Error: The user not added", Toast.LENGTH_SHORT).show()

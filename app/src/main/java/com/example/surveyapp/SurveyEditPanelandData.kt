@@ -20,14 +20,17 @@ class SurveyEditPanelandData : AppCompatActivity() {
     var resultList = ArrayList<com.example.surveyapp.Model.Result>()
     var surveyid = 0
     lateinit var simpleList: ListView
-
+    var userId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_edit_paneland_data)
         supportActionBar?.title = ""
 
-        surveyid = intent.getIntExtra("surveyid", 0)
+        var getsurveid = intent.getIntExtra("surveyid", 0)
+        var getuserid = intent.getIntExtra("userId",0)
+        surveyid = getsurveid
+        userId = getuserid
 
         val survey = dbHelper.getSurveyById(surveyid)
         val answers = dbHelper.getAllAnswers()
@@ -102,6 +105,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
     fun edit(view: View) {
         val intent = Intent(this, EditSurveyTitlePanel::class.java)
         intent.putExtra("surveyId", surveyid)
+        intent.putExtra("userId",userId)
         startActivity(intent)
     }
 
@@ -111,14 +115,19 @@ class SurveyEditPanelandData : AppCompatActivity() {
         if (dbHelper.deleteSurvey(surveyid)) {
             val intent = Intent(this, AdminPanel::class.java)
 
-            for (i in 0 until 10) {
-                dbHelper.deleteQuestion(questions[i].questionId)
+            try {
+                for (i in 0 until 10) {
+                    dbHelper.deleteQuestion(questions[i].questionId)
+                }
+
+                for (i in 0 until answerList.size) {
+                    dbHelper.deleteAnswer(answerList[i])
+                }
+            }catch (e: java.lang.IndexOutOfBoundsException){
             }
 
-            for (i in 0 until answerList.size) {
-                dbHelper.deleteAnswer(answerList[i])
-            }
 
+            intent.putExtra("userId",userId)
             Toast.makeText(this, "Survey deleted", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         } else {
