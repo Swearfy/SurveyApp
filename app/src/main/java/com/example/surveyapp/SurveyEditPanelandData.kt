@@ -93,8 +93,9 @@ class SurveyEditPanelandData : AppCompatActivity() {
                 )
             }
         } catch (e: IllegalArgumentException) {
+            var f = 1
             for (questionId in questionIdList) {
-                resultList.add(Result(j, 0, 0, 0, 0, 0, 0))
+                resultList.add(Result(f++, 0, 0, 0, 0, 0, 0))
             }
         }
 
