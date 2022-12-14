@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.*
-import org.w3c.dom.Text
 import kotlin.math.roundToInt
 
 class SurveyEditPanelandData : AppCompatActivity() {
@@ -28,7 +27,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
         supportActionBar?.title = ""
 
         var getsurveid = intent.getIntExtra("surveyid", 0)
-        var getuserid = intent.getIntExtra("userId",0)
+        var getuserid = intent.getIntExtra("userId", 0)
         surveyid = getsurveid
         userId = getuserid
 
@@ -36,11 +35,11 @@ class SurveyEditPanelandData : AppCompatActivity() {
         val answers = dbHelper.getAllAnswers()
         val questions = dbHelper.getAllQuestionsBySurveyId(surveyid)
 
-        for (question in questions){
+        for (question in questions) {
             questionIdList.add(question.questionId)
         }
 
-        for (id in questionIdList){
+        for (id in questionIdList) {
             answerList.addAll(dbHelper.getAllAnswersByQuestionid(id))
         }
 
@@ -50,13 +49,13 @@ class SurveyEditPanelandData : AppCompatActivity() {
 
         try {
             for (questionId in questionIdList) {
-                var strongAgree= 0
-                var agree= 0
-                var neither= 0
-                var disagre= 0
-                var strongDisagree= 0
-                for (x in 0 until answerList.size){
-                    if(questionId == answerList[x].questionId){
+                var strongAgree = 0
+                var agree = 0
+                var neither = 0
+                var disagre = 0
+                var strongDisagree = 0
+                for (x in 0 until answerList.size) {
+                    if (questionId == answerList[x].questionId) {
                         when (answerList[x].answerText) {
                             "1.Strongly Agree" -> {
                                 strongAgree++
@@ -76,23 +75,34 @@ class SurveyEditPanelandData : AppCompatActivity() {
                         }
                     }
                 }
-                var a = strongAgree.toDouble()/(totalAnswers/10)*100
-                var b = agree.toDouble()/(totalAnswers/10)*100
-                var c = neither.toDouble()/(totalAnswers/10)*100
-                var d = disagre.toDouble()/(totalAnswers/10)*100
-                var x = strongDisagree.toDouble()/(totalAnswers/10)*100
-                resultList.add(Result(j++,totalAnswers,a.roundToInt(),b.roundToInt(),c.roundToInt(),d.roundToInt(),x.roundToInt()))
+                var a = strongAgree.toDouble() / (totalAnswers / 10) * 100
+                var b = agree.toDouble() / (totalAnswers / 10) * 100
+                var c = neither.toDouble() / (totalAnswers / 10) * 100
+                var d = disagre.toDouble() / (totalAnswers / 10) * 100
+                var x = strongDisagree.toDouble() / (totalAnswers / 10) * 100
+                resultList.add(
+                    Result(
+                        j++,
+                        totalAnswers,
+                        a.roundToInt(),
+                        b.roundToInt(),
+                        c.roundToInt(),
+                        d.roundToInt(),
+                        x.roundToInt()
+                    )
+                )
             }
-        }catch (e: IllegalArgumentException){
-            for (questionId in questionIdList){
-                resultList.add(Result(j,0,0,0,0,0,0))
+        } catch (e: IllegalArgumentException) {
+            for (questionId in questionIdList) {
+                resultList.add(Result(j, 0, 0, 0, 0, 0, 0))
             }
         }
 
         findViewById<TextView>(R.id.text_editTitle).text = survey.surveyTitle
         findViewById<TextView>(R.id.text_editStartDate).text = survey.surveyStartDate
         findViewById<TextView>(R.id.text_editEndDate).text = survey.surveyEndDate
-        findViewById<TextView>(R.id.totalanswers).text = "Total responses " + (totalAnswers/10).toString()
+        findViewById<TextView>(R.id.totalanswers).text =
+            "Total responses " + (totalAnswers / 10).toString()
 
         simpleList = findViewById<ListView>(R.id.resultListView)
 
@@ -105,7 +115,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
     fun edit(view: View) {
         val intent = Intent(this, EditSurveyTitlePanel::class.java)
         intent.putExtra("surveyId", surveyid)
-        intent.putExtra("userId",userId)
+        intent.putExtra("userId", userId)
         startActivity(intent)
     }
 
@@ -123,11 +133,11 @@ class SurveyEditPanelandData : AppCompatActivity() {
                 for (i in 0 until answerList.size) {
                     dbHelper.deleteAnswer(answerList[i])
                 }
-            }catch (e: java.lang.IndexOutOfBoundsException){
+            } catch (e: java.lang.IndexOutOfBoundsException) {
             }
 
 
-            intent.putExtra("userId",userId)
+            intent.putExtra("userId", userId)
             Toast.makeText(this, "Survey deleted", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         } else {
@@ -137,13 +147,13 @@ class SurveyEditPanelandData : AppCompatActivity() {
 
     fun seeIndividual(view: View) {
         val intent = Intent(this, PieChart::class.java)
-        intent.putExtra("surveyid",surveyid)
+        intent.putExtra("surveyid", surveyid)
         startActivity(intent)
     }
 
     fun seeBarchart(view: View) {
         val intent = Intent(this, BarChartSurvey::class.java)
-        intent.putExtra("surveyid",surveyid)
+        intent.putExtra("surveyid", surveyid)
         startActivity(intent)
     }
 

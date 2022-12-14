@@ -305,7 +305,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
                 val questionId = cursor.getInt(0)
                 val questionText = cursor.getString(1)
                 val surveyId = cursor.getInt(2)
-                val x = Question(questionId,questionText,surveyId)
+                val x = Question(questionId, questionText, surveyId)
                 answersList.add(x)
             } while (cursor.moveToNext())
         }

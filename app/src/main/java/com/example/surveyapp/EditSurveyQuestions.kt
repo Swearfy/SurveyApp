@@ -23,7 +23,7 @@ class EditSurveyQuestions : AppCompatActivity() {
         supportActionBar?.title = ""
 
         val transferId = intent.getIntExtra("surveyId", 0)
-        userIddddd = intent.getIntExtra("userId",0)
+        userIddddd = intent.getIntExtra("userId", 0)
         transferId2 = transferId
         val questions = dbHelper.getAllQuestionsBySurveyId(transferId2)
 
@@ -98,7 +98,7 @@ class EditSurveyQuestions : AppCompatActivity() {
                 }
 
                 val intent = Intent(this, AdminPanel::class.java)
-                intent.putExtra("userId",userIddddd)
+                intent.putExtra("userId", userIddddd)
                 startActivity(intent)
 
             } else {

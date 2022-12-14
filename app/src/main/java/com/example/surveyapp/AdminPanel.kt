@@ -37,14 +37,14 @@ class AdminPanel : AppCompatActivity() {
 
             val intent = Intent(this, SurveyEditPanelandData::class.java)
             intent.putExtra("surveyid", surveyTitle.surveyId)
-            intent.putExtra("userId",userIdd)
+            intent.putExtra("userId", userIdd)
             startActivity(intent)
         }
     }
 
     fun newSurveyButton(view: View) {
         val intent = Intent(this, NewSurveyPanel::class.java)
-        intent.putExtra("USERID",userIdd)
+        intent.putExtra("USERID", userIdd)
         startActivity(intent)
     }
 

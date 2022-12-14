@@ -27,7 +27,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
         supportActionBar?.title = ""
 
         val id = intent.getIntExtra("surveyId", 0)
-        userIdddd = intent.getIntExtra("userId",0)
+        userIdddd = intent.getIntExtra("userId", 0)
         val chosenIdSurvey = dbHelper.getSurveyById(id)
 
         startDate2 = findViewById(R.id.text_startDate2)
@@ -112,7 +112,7 @@ class EditSurveyTitlePanel : AppCompatActivity() {
             return
         }
         intent.putExtra("surveyId", transferId)
-        intent.putExtra("userId",userIdddd)
+        intent.putExtra("userId", userIdddd)
         intent.putExtra("title", title)
         intent.putExtra("startDate", startDate)
         intent.putExtra("endDate", endDate)

@@ -8,7 +8,8 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.surveyapp.R
 
-class Results(private val appContext: Context,private val resultsList: ArrayList<Result>): BaseAdapter() {
+class Results(private val appContext: Context, private val resultsList: ArrayList<Result>) :
+    BaseAdapter() {
     private val inflater: LayoutInflater =
         appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -38,12 +39,12 @@ class Results(private val appContext: Context,private val resultsList: ArrayList
         val result5 = view.findViewById<TextView>(R.id.text_result5)
 
 
-        questionNo.text = "Question: "+resultsList[p0].x.toString()
+        questionNo.text = "Question: " + resultsList[p0].x.toString()
         result1.text = resultsList[p0].result1.toString() + "%"
-        result2.text = resultsList[p0].result2.toString()+ "%"
-        result3.text = resultsList[p0].result3.toString()+ "%"
-        result4.text = resultsList[p0].result4.toString()+ "%"
-        result5.text = resultsList[p0].result5.toString()+ "%"
+        result2.text = resultsList[p0].result2.toString() + "%"
+        result3.text = resultsList[p0].result3.toString() + "%"
+        result4.text = resultsList[p0].result4.toString() + "%"
+        result5.text = resultsList[p0].result5.toString() + "%"
 
         return view
     }

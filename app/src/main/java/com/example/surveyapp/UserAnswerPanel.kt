@@ -3,11 +3,7 @@ package com.example.surveyapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.surveyapp.Model.Answer
@@ -30,8 +26,8 @@ class UserAnswerPanel : AppCompatActivity() {
         var getsurveyid = intent.getIntExtra("surveyid", 0)
         var getuserid = intent.getIntExtra("userId", 0)
 
-        surveyId =  getsurveyid
-        userId =  getuserid
+        surveyId = getsurveyid
+        userId = getuserid
 
         val questions = dbHelper.getAllQuestionsBySurveyId(surveyId)
 
@@ -55,11 +51,12 @@ class UserAnswerPanel : AppCompatActivity() {
         val button5 = findViewById<RadioButton>(R.id.radioButton5)
 
         if (!button1.isChecked &&
-                !button2.isChecked &&
-                !button3.isChecked &&
-                !button4.isChecked &&
-                !button5.isChecked){
-            Toast.makeText(this,"Please check one option",Toast.LENGTH_SHORT).show()
+            !button2.isChecked &&
+            !button3.isChecked &&
+            !button4.isChecked &&
+            !button5.isChecked
+        ) {
+            Toast.makeText(this, "Please check one option", Toast.LENGTH_SHORT).show()
             return
         }
         checkSelected()
@@ -104,8 +101,9 @@ class UserAnswerPanel : AppCompatActivity() {
             !button2.isChecked &&
             !button3.isChecked &&
             !button4.isChecked &&
-            !button5.isChecked){
-            Toast.makeText(this,"Please check one option",Toast.LENGTH_SHORT).show()
+            !button5.isChecked
+        ) {
+            Toast.makeText(this, "Please check one option", Toast.LENGTH_SHORT).show()
             return
         }
         checkSelected()

@@ -26,7 +26,7 @@ class NewSurveyPanel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_survey_panel)
         supportActionBar?.title = ""
-       var userId = intent.getIntExtra("USERID", 0)
+        var userId = intent.getIntExtra("USERID", 0)
         userIddddd = userId
 
         startDate = findViewById<TextView>(R.id.text_startDate)
@@ -123,7 +123,7 @@ class NewSurveyPanel : AppCompatActivity() {
             intent.putExtra("title", title)
             intent.putExtra("startDate", startDate)
             intent.putExtra("endDate", endDate)
-            intent.putExtra("userId",userIddddd)
+            intent.putExtra("userId", userIddddd)
             startActivity(intent)
         }
     }
