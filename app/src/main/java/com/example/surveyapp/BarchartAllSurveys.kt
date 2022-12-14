@@ -117,6 +117,7 @@ class BarchartAllSurveys : AppCompatActivity() {
 
         barChart.xAxis.valueFormatter = IndexAxisValueFormatter(xAxisLabels)
         barChart.xAxis.labelCount = xAxisLabels.size
+        barChart.xAxis.labelRotationAngle = -50f
         barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         barChart.description = null;
         var l = barChart.axisLeft
