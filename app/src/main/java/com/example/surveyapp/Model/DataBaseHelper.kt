@@ -293,6 +293,28 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
 
     //question getters
 
+    fun getAllQuestions(): ArrayList<Question> {
+        val answersList = ArrayList<Question>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $questions"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val questionId = cursor.getInt(0)
+                val questionText = cursor.getString(1)
+                val surveyId = cursor.getInt(2)
+                val x = Question(questionId,questionText,surveyId)
+                answersList.add(x)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+
+        return answersList
+    }
+
     fun getAllQuestionsBySurveyId(id: Int): ArrayList<Question> {
         val questionList = ArrayList<Question>()
         val db: SQLiteDatabase = this.readableDatabase

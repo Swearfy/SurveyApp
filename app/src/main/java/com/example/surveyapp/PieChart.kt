@@ -33,6 +33,8 @@ class PieChart : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pie_chart)
+        supportActionBar?.title = ""
+
         pieChart = findViewById(R.id.piechart)
 
         findViewById<Button>(R.id.button4).isVisible = false
@@ -48,8 +50,7 @@ class PieChart : AppCompatActivity() {
         for (id in newArray){
             answerList.addAll(dbHelper.getAllAnswersByQuestionid(id))
         }
-
-        setupChart()
+        pieChart.centerText = "Question 1"
         loadChartData()
     }
 
@@ -84,18 +85,6 @@ class PieChart : AppCompatActivity() {
         finish()
     }
 
-
-    fun setupChart(){
-        pieChart.isDrawHoleEnabled = true
-        pieChart.setUsePercentValues(true)
-        pieChart.setEntryLabelTextSize(12F)
-        pieChart.setEntryLabelColor(Color.BLACK)
-        pieChart.setCenterTextSize(24f)
-        pieChart.description.isEnabled = false
-        pieChart.centerText = "Question 1"
-        var l = pieChart.legend
-        l.isEnabled = false
-    }
 
     fun loadChartData(){
 
@@ -135,6 +124,7 @@ class PieChart : AppCompatActivity() {
             var c = neither.toDouble()/(totalAnswers/10)*100
             var d = disagre.toDouble()/(totalAnswers/10)*100
             var x = strongDisagree.toDouble()/(totalAnswers/10)*100
+
             entries.add(PieEntry(a.toFloat(),"Strongly Agree"))
             entries.add(PieEntry(b.toFloat(),"Agree"))
             entries.add(PieEntry(c.toFloat(),"Nighter  "))
@@ -161,11 +151,20 @@ class PieChart : AppCompatActivity() {
         dataSet.colors = colors
 
         val data = PieData(dataSet)
+
         data.setDrawValues(true)
         data.setValueFormatter(PercentFormatter(pieChart))
         data.setValueTextSize(12f)
         data.setValueTextColor(Color.BLACK)
 
+        pieChart.isDrawHoleEnabled = true
+        pieChart.setUsePercentValues(true)
+        pieChart.setEntryLabelTextSize(12F)
+        pieChart.setEntryLabelColor(Color.BLACK)
+        pieChart.setCenterTextSize(24f)
+        pieChart.description.isEnabled = false
+        pieChart.legend.isEnabled = false
+        pieChart.animateX(1000)
         pieChart.data = data
         pieChart.invalidate()
     }

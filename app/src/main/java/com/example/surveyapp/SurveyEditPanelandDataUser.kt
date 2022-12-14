@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.surveyapp.Model.*
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -114,8 +115,18 @@ class SurveyEditPanelandDataUser : AppCompatActivity() {
 
         val current: LocalDate = LocalDate.now()
         val localDate2: LocalDate = LocalDate.parse(endDate.text, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+        val localDate3: LocalDate = LocalDate.parse(startdate.text, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
 
-        if (alreadyAnswered.contains(transferUserId) || localDate2<=current) {
+
+        findViewById<TextView>(R.id.text_warning).text = "Data will be updated once the survey has been answered."
+
+        if (localDate3 > current){
+            findViewById<Button>(R.id.btn_edit2).isVisible = false
+            findViewById<TextView>(R.id.text_warning).isVisible = true
+            findViewById<TextView>(R.id.text_warning).text = "The Survey has yet to start"
+        }
+        if (alreadyAnswered.contains(transferUserId) || localDate2<=current || localDate3 < current) {
+            findViewById<TextView>(R.id.text_warning).isVisible = false
             findViewById<Button>(R.id.btn_edit2).isVisible = false
             findViewById<LinearLayout>(R.id.linearLayout).isVisible = true
             findViewById<TextView>(R.id.textView17).isVisible = true

@@ -92,7 +92,7 @@ class SurveyEditPanelandData : AppCompatActivity() {
         findViewById<TextView>(R.id.text_editTitle).text = survey.surveyTitle
         findViewById<TextView>(R.id.text_editStartDate).text = survey.surveyStartDate
         findViewById<TextView>(R.id.text_editEndDate).text = survey.surveyEndDate
-        findViewById<TextView>(R.id.totalanswers).text = "Total responses " + totalAnswers.toString()
+        findViewById<TextView>(R.id.totalanswers).text = "Total responses " + (totalAnswers/10).toString()
 
         simpleList = findViewById<ListView>(R.id.resultListView)
 
@@ -139,7 +139,12 @@ class SurveyEditPanelandData : AppCompatActivity() {
         val intent = Intent(this, PieChart::class.java)
         intent.putExtra("surveyid",surveyid)
         startActivity(intent)
+    }
 
+    fun seeBarchart(view: View) {
+        val intent = Intent(this, BarChartSurvey::class.java)
+        intent.putExtra("surveyid",surveyid)
+        startActivity(intent)
     }
 
     fun goBack(view: View) {

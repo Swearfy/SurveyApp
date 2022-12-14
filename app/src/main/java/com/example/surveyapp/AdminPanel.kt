@@ -48,6 +48,11 @@ class AdminPanel : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun allSurveyBarChart(view: View) {
+        val intent = Intent(this, BarchartAllSurveys::class.java)
+        startActivity(intent)
+    }
+
     fun logOutBtn(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
