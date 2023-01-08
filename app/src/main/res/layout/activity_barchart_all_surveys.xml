@@ -6,10 +6,11 @@
         android:layout_height="match_parent"
         tools:context=".BarchartAllSurveys"
         android:background="#CCCCFF">
+
     <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barDataAllSurvey"
-            android:layout_width="410dp"
-            android:layout_height="598dp"
+            android:layout_width="390dp"
+            android:layout_height="601dp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
