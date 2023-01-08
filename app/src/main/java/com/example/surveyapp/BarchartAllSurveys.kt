@@ -2,6 +2,7 @@ package com.example.surveyapp
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.Answer
 import com.example.surveyapp.Model.DataBaseHelper
@@ -135,5 +136,9 @@ class BarchartAllSurveys : AppCompatActivity() {
         barChart.legend.isEnabled = false;
         barChart.data.setValueTextSize(1f);
         barChart.invalidate()
+    }
+
+    fun exit(view: View){
+        finish()
     }
 }

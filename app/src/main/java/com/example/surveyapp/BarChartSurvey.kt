@@ -81,9 +81,17 @@ class BarChartSurvey : AppCompatActivity() {
                 }
 
                 var total = intArrayOf(strongAgree, agree, neither, disagre, strongDisagree)
-                var total2 =
-                    (5 * strongAgree + 4 * agree + 3 * neither + 2 * disagre + 1 * strongAgree) / total.sum()
-                testarray.add(total2)
+
+                if (total.sum() > 0) {
+                    var total2 =
+                        (5 * strongAgree + 4 * agree + 3 * neither + 2 * disagre + 1 * strongAgree) / total.sum()
+                    testarray.add(total2)
+                }
+                if (total.sum() == 0) {
+                    var total2 =
+                        (5 * strongAgree + 4 * agree + 3 * neither + 2 * disagre + 1 * strongAgree) / 1
+                    testarray.add(total2)
+                }
             }
 
             entries.add(BarEntry(0f, testarray[0].toFloat(), "test"))
